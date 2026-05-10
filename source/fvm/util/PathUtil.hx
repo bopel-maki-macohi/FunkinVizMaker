@@ -1,5 +1,7 @@
 package fvm.util;
 
+import flixel.graphics.frames.FlxAtlasFrames;
+
 class PathUtil
 {
 	public static inline function getPath(path:String):String
@@ -25,4 +27,10 @@ class PathUtil
 
 	public static inline function imageFile(path:String):String
 		return '$path.png';
+
+	public static inline function xmlFile(path:String):String
+		return '$path.xml';
+
+	public static inline function getSparrowAtlas(rawPath:String):FlxAtlasFrames
+		return FlxAtlasFrames.fromSparrow(rawPath.imageFile(), rawPath.xmlFile());
 }

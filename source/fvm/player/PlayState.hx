@@ -1,5 +1,6 @@
 package fvm.player;
 
+import haxe.io.Path;
 import lime.utils.Assets;
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
@@ -68,7 +69,24 @@ class PlayState extends ConductorState
 
 			switch (prop.type)
 			{
-				case bopper:
+				case bopperSparrow:
+					if (prop.anims == null)
+						continue;
+
+					var sparrowBopper = new FlxSprite();
+					sparrowBopper.frames = Path.withoutExtension(assetPath).getSparrowAtlas();
+
+					for (anim in prop.anims)
+					{
+						sparrowBopper.animation.addByPrefix(anim.name, anim.prefix, 24, false);
+						sparrowBopper.animation.play(anim.name);
+					}
+
+					if (prop.defaultAnim != null)
+						sparrowBopper.animation.play(prop.defaultAnim);
+
+					sparrowBopper.screenCenter();
+					props.add(sparrowBopper);
 
 				case still:
 					var staticSprite = new FlxSprite(0, 0, assetPath);

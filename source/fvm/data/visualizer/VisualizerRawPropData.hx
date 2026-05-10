@@ -5,5 +5,6 @@ typedef VisualizerRawPropData =
 	type:VisualizerPropType,
 	asset:String,
 	
-    ?anims:VisualizerRawAnimationData,
+	?defaultAnim:String,
+    ?anims:Array<VisualizerRawAnimationData>,
 }

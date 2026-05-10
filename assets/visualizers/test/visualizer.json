@@ -11,12 +11,12 @@
             "asset": "bf-icon"
         },
         {
-            "type": "bopper",
+            "type": "bopperSparrow",
             "asset": "bf",
             "anims": [
                 {
                     "name": "idle",
-                    "prefix": "BF Idle Dance"
+                    "prefix": "BF idle dance instance"
                 }
             ]
         }
