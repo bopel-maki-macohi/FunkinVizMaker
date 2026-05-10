@@ -1,0 +1,15 @@
+--library flixel
+--library hxp
+
+-D doc-gen
+# --macro include('flash')
+# --macro include('lime')
+# --macro include('openfl')
+--macro include('fixel')
+--macro include('fvm')
+--no-output
+--each
+
+--next
+-xml docs/cpp.xml
+-cpp dummy.n

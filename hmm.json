@@ -19,6 +19,11 @@
       "name": "hscript",
       "type": "haxelib",
       "version": null
+    },
+    {
+      "name": "hxp",
+      "type": "haxelib",
+      "version": null
     }
   ]
 }
