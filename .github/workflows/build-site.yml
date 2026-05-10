@@ -29,11 +29,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Check directoriy
+        run: 'dir'
+
       - name: Generate docs file
-        run: docs\docs-windows.bat
+        run: 'docs\docs-windows.bat'
 
       - name: Generate docs site
-        run: docs\html.bat
+        run: 'docs\html.bat'
 
       - name: Checkout
         uses: actions/checkout@v4
