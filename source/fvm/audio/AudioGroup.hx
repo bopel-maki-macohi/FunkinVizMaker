@@ -1,5 +1,6 @@
 package fvm.audio;
 
+import flixel.FlxG;
 import flixel.sound.FlxSound;
 import lime.utils.Assets;
 import flixel.sound.FlxSoundGroup;
@@ -12,8 +13,8 @@ class AudioGroup extends FlxSoundGroup
 		{
 			if (Assets.exists(file))
 				add(new FlxSound().loadEmbedded(file));
-            else 
-                trace('Audio File doesnt exist: $file');
+			else
+				trace('Audio File doesnt exist: $file');
 		}
 	}
 
@@ -21,5 +22,13 @@ class AudioGroup extends FlxSoundGroup
 	{
 		for (sound in sounds)
 			sound.play(forceRestart, startTime);
+	}
+
+	public function update(elapsed:Float)
+	{
+		for (i => sound in sounds)
+		{
+			FlxG.watch.addQuick('sound$i.time', sound.time / 1000);
+		}
 	}
 }

@@ -74,6 +74,8 @@ class PlayState extends ConductorState
 	{
 		super.update(elapsed);
 
+		audioFiles.update(elapsed);
+
 		conductor.songPosition += elapsed * 1000;
 		conductor.update();
 	}
