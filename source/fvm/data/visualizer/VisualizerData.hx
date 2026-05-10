@@ -65,4 +65,12 @@ class VisualizerData extends DataClass<VisualizerRawData>
 
 	function set_props(props:Array<VisualizerRawPropData>):Array<VisualizerRawPropData>
 		return data.props = props;
+
+	public var events(get, set):Array<VisualizerRawEventData>;
+
+	function get_events():Array<VisualizerRawEventData>
+		return data.events;
+
+	function set_events(events:Array<VisualizerRawEventData>):Array<VisualizerRawEventData>
+		return data.events = events;
 }

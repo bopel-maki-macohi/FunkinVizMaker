@@ -13,4 +13,6 @@ typedef VisualizerRawData =
 	stage:VisualizerRawStageData,
 
 	props:Array<VisualizerRawPropData>,
+
+	events:Array<VisualizerRawEventData>,
 }
