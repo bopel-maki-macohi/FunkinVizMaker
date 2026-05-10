@@ -5,7 +5,6 @@ function onCreate()
 	trace('hello world');
 
     trace(PathUtil.audioFile('nonexistant-audio'));
-    trace(PathUtil.getCorePath('nonexistant-core-path'));
     trace(PathUtil.getPath('nonexistant-path'));
     PathUtil.getPropAsset('nonexistant.asset', 'nonexistant-prop');
     PathUtil.getPropAsset('nonexistant-asset', 'nonexistant-prop', 'nonexistant-song-id');

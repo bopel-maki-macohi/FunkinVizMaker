@@ -11,5 +11,9 @@ class ScriptUtil
 		Core.call(fn, args);
 	}
 
+	public static function callCore(fn:String, ?args:Array<Dynamic>) call([], fn, args);
+
 	public static function callEvent<T:CancellableEvent>(scriptPacks:Array<ScriptPack>, fn:String, event:T) call(scriptPacks, fn, [event]);
+
+	public static function callCoreEvent<T:CancellableEvent>(fn:String, event:T) callEvent([], fn, event);
 }

@@ -21,8 +21,6 @@ class VizProp extends VizSprite
 
 	public var id:String;
 
-	public var scriptPack:ScriptPack;
-
 	override public function new(data:VisualizerRawPropData, propNum:Int, ?songID:String)
 	{
 		super();
@@ -51,9 +49,6 @@ class VizProp extends VizSprite
 		if (data.bopType != null) this.bopType = data.bopType;
 
 		if (data.id != null) this.id = data.id;
-		scriptPack = new ScriptPack(id);
-		scriptPack.load('core');
-		trace(scriptPack.scripts);
 
 		var assetPath:String = data.asset.imageFile().getPropAsset(id, songID);
 
@@ -126,7 +121,7 @@ class VizProp extends VizSprite
 					// screenCenter();
 				}
 
-				ScriptUtil.callEvent([scriptPack], 'parsePropTag', EventManager.get(VisualizerPropParseTagEvent).recycle(this, tag));
+				ScriptUtil.callCoreEvent('parsePropTag', EventManager.get(VisualizerPropParseTagEvent).recycle(this, tag));
 			}
 		}
 
@@ -170,6 +165,6 @@ class VizProp extends VizSprite
 		if (!animated) return;
 
 		animation.play(bopAnim);
-		ScriptUtil.callEvent([scriptPack], 'dance', EventManager.get(VisualizerPropEvent).recycle(this));
+		ScriptUtil.callCoreEvent('dance', EventManager.get(VisualizerPropEvent).recycle(this));
 	}
 }

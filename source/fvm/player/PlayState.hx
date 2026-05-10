@@ -30,18 +30,12 @@ class PlayState extends ConductorState
 
 	public static var instance:PlayState;
 
-	public var sharedScriptPack:ScriptPack;
-	public var localScriptPack:ScriptPack;
-
 	override function create()
 	{
 		super.create();
 
 		instance = null;
 		instance = this;
-
-		localScriptPack = new ScriptPack('visualizer_${song}_local');
-		localScriptPack.load(song.getSongVizualizerPath('scripts/'));
 
 		camGame = new FlxCamera();
 		FlxG.cameras.add(camGame);
@@ -135,10 +129,5 @@ class PlayState extends ConductorState
 	public function parseEvent(event:VisualizerRawEventEventData)
 	{
 		callEvent('onEvent', EventManager.get(VisualizerEventCallEvent).recycle(event.id, event.value));
-	}
-
-	override function call(fn:String, ?args:Array<Dynamic>)
-	{
-		ScriptUtil.call([localScriptPack], fn, args);
 	}
 }

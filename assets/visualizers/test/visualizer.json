@@ -12,7 +12,7 @@
         {
             "layer": 10,
             "type": "still",
-            "asset": "stageback",
+            "asset": "stage/stageback",
             "tags": [
                 "screencenter"
             ],
@@ -24,7 +24,7 @@
         {
             "layer": 20,
             "type": "still",
-            "asset": "stagefront",
+            "asset": "stage/stagefront",
             "tags": [
                 "screencenter"
             ],
@@ -40,7 +40,7 @@
         {
             "layer": 400,
             "type": "still",
-            "asset": "stagecurtains",
+            "asset": "stage/stagecurtains",
             "tags": [
                 "screencenter"
             ],

@@ -10,8 +10,6 @@ class PathUtil
 {
 	public static inline function getPath(path:String):String return 'assets/$path';
 
-	public static inline function getCorePath(path:String):String return getPath('core/$path');
-
 	public static inline function getSharedPath(path:String):String return getPath('shared/$path');
 
 	public static inline function getVisualizersPath(path:String):String return getPath('visualizers/$path');

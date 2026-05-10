@@ -19,11 +19,12 @@ class ScriptPack
 
 	public function load(folder:String)
 	{
-		var path:String = PathUtil.getPath(folder);
+		var path:String = (!folder.startsWith(''.getPath())) ? PathUtil.getPath(folder) : folder;
 
-		var scripts:Array<String> = [for (file in FileUtil.readDirectoryRecursive(path)) file];
-
-		for (s in scripts) if (s.endsWith(''.scriptFile())) add(new Script(s));
+		for (s in FileUtil.readDirectoryRecursive(path))
+		{
+			if (s.endsWith(''.scriptFile())) add(new Script(s));
+		}
 	}
 
 	public function add(script:Script) scripts.push(script);

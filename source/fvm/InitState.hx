@@ -29,12 +29,14 @@ class InitState extends FlxState
 
 		CrashHandler.init();
 
+		Core.scriptPack = new ScriptPack('core');
+
+		Core.scriptPack.load(''.getSharedPath());
+		Core.scriptPack.load(''.getVisualizersPath());
+
 		initInstances();
 
 		initFlixel();
-
-		Core.scriptPack = new ScriptPack('core');
-		Core.scriptPack.load('core');
 
 		Thread.create(genDocs);
 
