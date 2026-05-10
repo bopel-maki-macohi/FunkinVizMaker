@@ -1,10 +1,8 @@
 package fvm.util.debug;
 
-import haxe.display.Protocol.Methods;
 import lime.app.Application;
 import sys.io.File;
 import haxe.CallStack;
-import haxe.CallStack.StackItem;
 import sys.FileSystem;
 import flixel.input.keyboard.FlxKey;
 import flixel.FlxG;
@@ -22,6 +20,8 @@ class CrashHandler
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
 
 		FlxG.signals.postUpdate.add(errorKeybind);
+
+		trace('Init crash handler');
 	}
 
 	public static var CRASH_KEY:FlxKey = F1;
