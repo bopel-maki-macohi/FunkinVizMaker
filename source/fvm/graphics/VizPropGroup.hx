@@ -67,4 +67,28 @@ class VizPropGroup extends FlxTypedSpriteGroup<VizProp>
 		else
 			sprite.destroy();
 	}
+
+	public function onBeatHit(curBeat:Int)
+	{
+		for (prop in members)
+		{
+			if (prop.bopType == beat)
+				prop.dance();
+
+			if (prop.bopType == otherbeat && curBeat % 2 == 0)
+				prop.dance();
+		}
+	}
+
+	public function onStepHit(curStep:Int)
+	{
+		for (prop in members)
+		{
+			if (prop.bopType == step)
+				prop.dance();
+
+			if (prop.bopType == otherstep && curStep % 2 == 0)
+				prop.dance();
+		}
+	}
 }

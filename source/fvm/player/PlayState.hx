@@ -38,6 +38,8 @@ class PlayState extends ConductorState
 
 		props = new VizPropGroup();
 		add(props);
+
+		props.loadProps(songID, songVisualizerData.props);
 	}
 
 	/**
@@ -69,6 +71,15 @@ class PlayState extends ConductorState
 	{
 		super.beatHit(beat);
 
-		trace('beat: $beat');
+		props.onBeatHit(beat);
+
+		// trace('beat: $beat');
+	}
+
+	override function stepHit(step:Int)
+	{
+		super.stepHit(step);
+
+		props.onStepHit(step);
 	}
 }

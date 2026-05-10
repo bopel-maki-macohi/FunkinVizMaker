@@ -31,7 +31,7 @@ class VisualizerData extends DataClass<VisualizerRawData>
 
 		// upgrading shit here
 
-		trace('Loaded $songID Visualizer data: $data');
+		trace('Loaded $songID Visualizer data');
 	}
 
 	public var audioFiles(get, set):Array<String>;

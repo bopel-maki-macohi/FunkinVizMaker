@@ -7,4 +7,5 @@ typedef VisualizerRawPropData =
 	
 	?bopAnim:String,
     ?anims:Array<VisualizerRawAnimationData>,
+	?bopType:VisualizerPropBopType,
 }

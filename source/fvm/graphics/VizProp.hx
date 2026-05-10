@@ -1,5 +1,6 @@
 package fvm.graphics;
 
+import fvm.data.visualizer.VisualizerPropBopType;
 import haxe.io.Path;
 import fvm.data.visualizer.VisualizerRawPropData;
 
@@ -21,14 +22,30 @@ class VizProp extends VizSprite
 
 	public var loaded:Bool = false;
 
+	public var bopType:VisualizerPropBopType;
+
+	public var bopAnim:String;
+
 	public function parseData()
 	{
+		if (loaded)
+			return;
+
+		if (data == null)
+			return;
+
 		if (assetPath == null)
 			return;
+
+		this.bopType = beat;
+		if (data.bopType != null)
+			this.bopType = data.bopType;
 
 		switch (data.type)
 		{
 			case still:
+				this.bopType = none;
+
 				loadGraphic(assetPath);
 				loaded = true;
 
@@ -52,10 +69,23 @@ class VizProp extends VizSprite
 				if (animation.getNameList().length == 0)
 					return;
 
-				if (data.bopAnim != null)
-					animation.play(data.bopAnim);
+				if (data.bopAnim == null)
+					data.bopAnim = animation.getNameList()[0];
+
+				bopAnim = data.bopAnim;
+				dance();
 
 				loaded = true;
 		}
+
+		if (loaded)
+			parseGeneralData();
+	}
+
+	public function parseGeneralData() {}
+
+	public function dance()
+	{
+		animation.play(bopAnim);
 	}
 }
