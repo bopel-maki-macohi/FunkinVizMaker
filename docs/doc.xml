@@ -30434,9 +30434,9 @@
 		</meta>
 	</enum>
 	<class path="flixel.system.FlxVersion" params="" file="D:/FNF/custom/FunkinVizMaker/.haxelib/flixel/6,1,2/flixel/system/FlxVersion.hx">
-		<sha public="1" set="null" expr="&quot;3739d9b859bee33fa047937b8d835fda0a344612\n&quot;" line="39" static="1">
+		<sha public="1" set="null" expr="&quot;b0f64b98b9d9127fcdf767cb03f404dd08474459\n&quot;" line="39" static="1">
 			<d/>
-			<meta><m n=":value"><e>"3739d9b859bee33fa047937b8d835fda0a344612\n"</e></m></meta>
+			<meta><m n=":value"><e>"b0f64b98b9d9127fcdf767cb03f404dd08474459\n"</e></m></meta>
 		</sha>
 		<major public="1" set="null"><x path="Int"/></major>
 		<minor public="1" set="null"><x path="Int"/></minor>

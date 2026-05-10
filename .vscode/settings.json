@@ -1,0 +1,5 @@
+{
+    "xml.symbols.excluded": [
+        "docs/doc.xml"
+    ],
+}
