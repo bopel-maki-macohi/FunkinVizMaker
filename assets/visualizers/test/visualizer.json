@@ -54,6 +54,7 @@
             ]
         },
         {
+            "id": "bf-pixel",
             "layer": 100,
             "type": "bopperSparrow",
             "asset": "bf-pixel",
@@ -75,6 +76,7 @@
             "antialiasing": false
         },
         {
+            "id": "bf",
             "layer": 200,
             "type": "bopperSparrow",
             "asset": "bf",
@@ -88,6 +90,22 @@
                     "prefix": "BF idle dance instance 1"
                 }
             ]
+        }
+    ],
+    "events": [
+        {
+            "time": 0.0,
+            "event": {
+                "id": "cameraFocus",
+                "value": "bf-pixel"
+            }
+        },
+        {
+            "time": 0.0,
+            "event": {
+                "id": "cameraFocus",
+                "value": "bf"
+            }
         }
     ]
 }

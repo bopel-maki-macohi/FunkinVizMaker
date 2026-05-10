@@ -18,6 +18,8 @@ typedef VisualizerRawPropData =
 	?flipY:Bool,
 	?antialiasing:Bool,
 	
+	?id:String,
+
 	?bopAnim:String,
     ?anims:Array<VisualizerRawAnimationData>,
 	?bopType:VisualizerPropBopType,

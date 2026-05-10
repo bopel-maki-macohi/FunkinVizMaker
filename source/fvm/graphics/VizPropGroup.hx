@@ -30,18 +30,21 @@ class VizPropGroup extends FlxTypedSpriteGroup<VizProp>
 			clear();
 		}
 
-		for (prop in props)
-			loadProp(prop, songID);
+		for (i => prop in props)
+			loadProp(prop, i, songID);
 
 		refresh();
 	}
 
-	public function loadProp(prop:VisualizerRawPropData, ?songID:String)
+	public function loadProp(prop:VisualizerRawPropData, propNum:Int, ?songID:String)
 	{
-		var sprite:VizProp = new VizProp(prop, songID);
+		var sprite:VizProp = new VizProp(prop, propNum, songID);
 
 		if (sprite.loaded)
+		{
+			trace('Adding prop: "${sprite.id}"');
 			add(sprite);
+		}
 		else
 			sprite.destroy();
 	}

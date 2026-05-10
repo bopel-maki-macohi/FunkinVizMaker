@@ -3,6 +3,8 @@ package fvm.util;
 import lime.utils.Assets;
 import flixel.graphics.frames.FlxAtlasFrames;
 
+using StringTools;
+
 class PathUtil
 {
 	public static inline function getPath(path:String):String
@@ -35,28 +37,34 @@ class PathUtil
 	public static inline function getSparrowAtlas(rawPath:String):FlxAtlasFrames
 		return FlxAtlasFrames.fromSparrow(rawPath.imageFile(), rawPath.xmlFile());
 
-	public static function getPropAsset(rawPath:String, ?songID:String):String
+	public static function getPropAsset(rawPath:String, id:String, ?songID:String):String
 	{
 		var assetPath:String = null;
 
 		final localPath = songID.getSongVizualizerPath('props/${rawPath}');
+		final altLocalPath = songID.getSongVizualizerPath('props/$id/${rawPath}');
+
 		final sharedPath = rawPath.getSharedPath();
+		final altSharedPath = '$id/$rawPath'.getSharedPath();
 
-		if (Assets.exists(localPath) && assetPath == null)
-			assetPath = localPath;
-		else
+		function checkForPath(path:String, pathType:String)
 		{
-			if (assetPath == null)
-				trace('No local prop asset path: $localPath');
+			var log = '$id : NPAP($pathType, $path)';
+
+			#if WHATS_NPAP
+			log = log.replace('NPAP', 'No Prop Asset Path');
+			#end
+
+			if (Assets.exists(path) && assetPath == null)
+				assetPath = path;
+			else if (assetPath == null)
+				trace(log);
 		}
 
-		if (Assets.exists(sharedPath) && assetPath == null)
-			assetPath = sharedPath;
-		else
-		{
-			if (assetPath == null)
-				trace('No shared prop asset path: $localPath');
-		}
+		checkForPath(localPath, 'local');
+		checkForPath(sharedPath, 'shared');
+		checkForPath(altLocalPath, 'local-alt');
+		checkForPath(altSharedPath, 'shared-alt');
 
 		return assetPath;
 	}

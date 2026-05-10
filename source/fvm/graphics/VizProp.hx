@@ -1,5 +1,6 @@
 package fvm.graphics;
 
+import flixel.FlxG;
 import flixel.graphics.frames.FlxAtlasFrames;
 import animate.FlxAnimateFrames;
 import fvm.data.visualizer.VisualizerPropBopType;
@@ -12,12 +13,16 @@ class VizProp extends VizSprite
 
 	public var songID:String;
 
-	override public function new(data:VisualizerRawPropData, ?songID:String)
+	public var id:String;
+
+	override public function new(data:VisualizerRawPropData, propNum:Int, ?songID:String)
 	{
 		super();
 
 		this.data = data;
 		this.songID = songID;
+
+		this.id = '$propNum';
 
 		parseData();
 	}
@@ -37,10 +42,14 @@ class VizProp extends VizSprite
 			return;
 
 		this.bopType = beat;
+
 		if (data.bopType != null)
 			this.bopType = data.bopType;
 
-		var assetPath:String = data.asset.imageFile().getPropAsset(songID);
+		if (data.id != null)
+			this.id = data.id;
+
+		var assetPath:String = data.asset.imageFile().getPropAsset(id, songID);
 
 		switch (data.type)
 		{
@@ -66,7 +75,7 @@ class VizProp extends VizSprite
 				{
 					if (anim.altAsset != null)
 					{
-						var altAssetPath:String = anim.altAsset.imageFile().getPropAsset(songID);
+						var altAssetPath:String = anim.altAsset.imageFile().getPropAsset(id, songID);
 						var altAtlas = Path.withoutExtension(altAssetPath).getSparrowAtlas();
 
 						if (altAtlas == null)
