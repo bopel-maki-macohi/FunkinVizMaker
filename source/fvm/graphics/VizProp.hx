@@ -82,7 +82,43 @@ class VizProp extends VizSprite
 			parseGeneralData();
 	}
 
-	public function parseGeneralData() {}
+	public function parseGeneralData()
+	{
+		if (data == null)
+			return;
+
+		if (data.tags != null)
+		{
+			for (tag in data.tags)
+			{
+				switch (tag.toLowerCase())
+				{
+					case 'center', 'screencenter':
+						screenCenter();
+				}
+			}
+		}
+
+		alpha = data?.alpha ?? 1;
+
+		if (data.position != null)
+		{
+			x += data?.position[0] ?? 0;
+			y += data?.position[1] ?? 0;
+		}
+		
+		if (data.scale != null)
+		{
+			scale.x = data?.scale[0] ?? 1;
+			scale.y = data?.scale[1] ?? 1;
+		}
+
+		if (data.scrollFactor != null)
+		{
+			scrollFactor.x = data?.scrollFactor[0] ?? 1;
+			scrollFactor.y = data?.scrollFactor[1] ?? 1;
+		}
+	}
 
 	public function dance()
 	{

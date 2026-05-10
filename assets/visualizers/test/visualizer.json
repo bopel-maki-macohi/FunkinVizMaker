@@ -8,11 +8,23 @@
     "props": [
         {
             "type": "still",
-            "asset": "bf-icon"
+            "asset": "bf-icon",
+            "tags": [
+                "center"
+            ],
+            "position": [
+                360
+            ]
         },
         {
             "type": "bopperSparrow",
             "asset": "bf",
+            "tags": [
+                "center"
+            ],
+            "position": [
+                -360
+            ],
             "anims": [
                 {
                     "name": "idle",
