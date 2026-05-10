@@ -3,7 +3,9 @@
 --library flixel
 --library flixel-animate
 --library hxp
+--library hxcpp
 
+-C docs
 -D doc-gen
 
 -D FLX_NO_DEBUG
@@ -14,13 +16,11 @@
 --macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedGroup')
 --macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedSpriteGroup')
 
-# --macro include('flixel-animate')
-# --macro include('flixel')
 --macro include('fvm')
 
 --no-output
 --each
 
 --next
--xml docs/cpp.xml
--cpp dummy.n
+-xml cpp.xml
+-cpp dummy.exe
