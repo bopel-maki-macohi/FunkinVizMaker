@@ -13,6 +13,4 @@ function onEvent(e)
 
 		camFollow.setPosition(prop.getGraphicMidpoint().x, prop.getGraphicMidpoint().y);
 	}
-	
-	trace('Core CameraFocus');
 }
