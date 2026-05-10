@@ -6,6 +6,8 @@ import haxe.macro.Expr;
 
 /**
  * A macro class for implementing z-ordering features.
+ * 
+ * Yoinked from [WTF-Engine](https://github.com/VirtuGuy/WTF-Engine)
  */
 class ZIndexMacro
 {

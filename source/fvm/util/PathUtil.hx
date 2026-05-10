@@ -1,7 +1,6 @@
 package fvm.util;
 
 import lime.utils.Assets;
-import fvm.data.visualizer.VisualizerRawPropData;
 import flixel.graphics.frames.FlxAtlasFrames;
 
 class PathUtil

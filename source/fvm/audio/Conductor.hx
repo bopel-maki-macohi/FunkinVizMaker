@@ -1,7 +1,6 @@
 package fvm.audio;
 
 import flixel.util.FlxSignal;
-import flixel.FlxBasic;
 
 class Conductor
 {

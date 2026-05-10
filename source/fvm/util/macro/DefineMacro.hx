@@ -1,10 +1,12 @@
 package fvm.util.macro;
 
-import haxe.macro.Expr.ExprOf;
 import haxe.macro.Context;
 
 class DefineMacro
 {
+	/**
+	 * Receive every define going into the game
+	 */
 	public static macro function getDefines():ExprOf<Array<String>>
 	{
 		var defines:Array<String> = [];

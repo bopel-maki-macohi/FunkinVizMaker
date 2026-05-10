@@ -92,6 +92,8 @@ class VizProp extends VizSprite
 				if (animation.getNameList().length == 0)
 					return;
 
+				this.animated = true;
+
 				if (data.bopAnim == null)
 					data.bopAnim = animation.getNameList()[0];
 
@@ -153,8 +155,17 @@ class VizProp extends VizSprite
 		// trace(zIndex);
 	}
 
+	/**
+	 * The purpose of this is to prevent
+	 * `dance()` from running.
+	 */
+	public var animated:Bool = false;
+
 	public function dance()
 	{
+		if (!animated)
+			return;
+
 		animation.play(bopAnim);
 	}
 }

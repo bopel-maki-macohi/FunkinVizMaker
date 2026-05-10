@@ -56,14 +56,14 @@ class PlayState extends ConductorState
 	/**
 	 * TODO: Make this open a pause state
 	 */
-	override function onFocusLost()
+	override public function onFocusLost()
 	{
 		super.onFocusLost();
 
 		audioFiles.pause();
 	}
 
-	override function onFocus()
+	override public function onFocus()
 	{
 		super.onFocus();
 
@@ -78,7 +78,7 @@ class PlayState extends ConductorState
 		conductor.update();
 	}
 
-	override function beatHit(beat:Int)
+	override public function beatHit(beat:Int)
 	{
 		super.beatHit(beat);
 
@@ -87,7 +87,7 @@ class PlayState extends ConductorState
 		// trace('beat: $beat');
 	}
 
-	override function stepHit(step:Int)
+	override public function stepHit(step:Int)
 	{
 		super.stepHit(step);
 
