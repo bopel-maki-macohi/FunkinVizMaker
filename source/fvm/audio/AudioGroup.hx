@@ -17,8 +17,7 @@ class AudioGroup extends FlxSoundGroup
 
 	override function remove(sound:FlxSound):Bool
 	{
-		if (sounds.contains(sound))
-			soundKeys.remove(soundKeys[sounds.indexOf(sound)]);
+		if (sounds.contains(sound)) soundKeys.remove(soundKeys[sounds.indexOf(sound)]);
 
 		return super.remove(sound);
 	}
@@ -48,8 +47,7 @@ class AudioGroup extends FlxSoundGroup
 			soundKeys.push(Path.withoutDirectory(Path.withoutExtension(file)));
 			add(new FlxSound().loadEmbedded(file));
 		}
-		else
-			trace('Audio File doesnt exist: $file');
+		else trace('Audio File doesnt exist: $file');
 	}
 
 	/**
@@ -62,14 +60,12 @@ class AudioGroup extends FlxSoundGroup
 	 */
 	public function loadFiles(files:Array<String>)
 	{
-		for (file in files)
-			addSoundFile(file);
+		for (file in files) addSoundFile(file);
 	}
 
 	public function play(startTime:Float = 0, forceRestart:Bool = false)
 	{
-		for (sound in sounds)
-			sound.play(forceRestart, startTime);
+		for (sound in sounds) sound.play(forceRestart, startTime);
 	}
 
 	@:noDoc

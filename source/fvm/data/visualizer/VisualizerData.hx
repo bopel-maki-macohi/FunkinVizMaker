@@ -9,8 +9,7 @@ class VisualizerData extends DataClass<VisualizerRawData>
 	{
 		var path:String = songID.getSongVizualizerPath('visualizer'.jsonFile());
 
-		if (!Assets.exists(path))
-			throw 'Missing Visualizer Path: $path';
+		if (!Assets.exists(path)) throw 'Missing Visualizer Path: $path';
 
 		var json:VisualizerRawData;
 
@@ -24,8 +23,7 @@ class VisualizerData extends DataClass<VisualizerRawData>
 			throw 'Visualizer Parsing Error: $e';
 		}
 
-		if (json == null)
-			return;
+		if (json == null) return;
 
 		data = json;
 

@@ -17,8 +17,7 @@ class ZIndexMacro
 
 		for (field in fields)
 		{
-			if (field.name != 'zIndex')
-				continue;
+			if (field.name != 'zIndex') continue;
 			has = true;
 		}
 
@@ -42,8 +41,7 @@ class ZIndexMacro
 
 		for (field in fields)
 		{
-			if (field.name != 'refresh')
-				continue;
+			if (field.name != 'refresh') continue;
 			has = true;
 		}
 

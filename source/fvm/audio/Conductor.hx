@@ -48,10 +48,8 @@ class Conductor
 		step = stepOffset + Math.floor((songPosition - songPositionOffset) / quaver);
 		beat = Math.floor(step / 4);
 
-		if (lastStep != step)
-			stepHit.dispatch(step);
-		if (lastBeat != beat)
-			beatHit.dispatch(beat);
+		if (lastStep != step) stepHit.dispatch(step);
+		if (lastBeat != beat) beatHit.dispatch(beat);
 	}
 
 	public function reset(bpm:Float = 0)

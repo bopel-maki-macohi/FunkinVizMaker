@@ -49,10 +49,8 @@ class PathUtil
 			log = log.replace('NPAP', 'No Prop Asset Path');
 			#end
 
-			if (Assets.exists(path) && assetPath == null)
-				assetPath = path;
-			else if (assetPath == null)
-				trace(log);
+			if (Assets.exists(path) && assetPath == null) assetPath = path;
+			else if (assetPath == null) trace(log);
 		}
 
 		checkForPath(localPath, 'local');

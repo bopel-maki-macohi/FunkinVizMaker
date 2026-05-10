@@ -35,27 +35,21 @@ class VizProp extends VizSprite
 
 	public function parseData()
 	{
-		if (loaded)
-			return;
-
-		if (data == null)
-			return;
+		if (loaded) return;
+		if (data == null) return;
 
 		this.bopType = beat;
 
-		if (data.bopType != null)
-			this.bopType = data.bopType;
+		if (data.bopType != null) this.bopType = data.bopType;
 
-		if (data.id != null)
-			this.id = data.id;
+		if (data.id != null) this.id = data.id;
 
 		var assetPath:String = data.asset.imageFile().getPropAsset(id, songID);
 
 		switch (data.type)
 		{
 			case still:
-				if (assetPath == null)
-					return;
+				if (assetPath == null) return;
 
 				this.bopType = none;
 
@@ -63,11 +57,8 @@ class VizProp extends VizSprite
 				loaded = true;
 
 			case bopperSparrow:
-				if (assetPath == null)
-					return;
-
-				if (data.anims == null)
-					return;
+				if (assetPath == null) return;
+				if (data.anims == null) return;
 
 				var frameList:Array<FlxAtlasFrames> = [Path.withoutExtension(assetPath).getSparrowAtlas()];
 
@@ -78,9 +69,8 @@ class VizProp extends VizSprite
 						var altAssetPath:String = anim.altAsset.imageFile().getPropAsset(id, songID);
 						var altAtlas = Path.withoutExtension(altAssetPath).getSparrowAtlas();
 
-						if (altAtlas == null)
-							return;
-
+						if (altAtlas == null) return;
+						
 						frameList.push(altAtlas);
 					}
 				}
@@ -89,22 +79,18 @@ class VizProp extends VizSprite
 
 				for (anim in data.anims)
 				{
-					if (anim.name == null)
-						continue;
-					if (anim.prefix == null)
-						continue;
+					if (anim.name == null) continue;
+					if (anim.prefix == null) continue;
 
 					animation.addByPrefix(anim.name, anim.prefix, 24, false);
 					animation.play(anim.name);
 				}
 
-				if (animation.getNameList().length == 0)
-					return;
+				if (animation.getNameList().length == 0) return;
 
 				this.animated = true;
 
-				if (data.bopAnim == null)
-					data.bopAnim = animation.getNameList()[0];
+				if (data.bopAnim == null) data.bopAnim = animation.getNameList()[0];
 
 				bopAnim = data.bopAnim;
 				dance();
@@ -112,14 +98,12 @@ class VizProp extends VizSprite
 				loaded = true;
 		}
 
-		if (loaded)
-			parseGeneralData();
+		if (loaded) parseGeneralData();
 	}
 
 	public function parseGeneralData()
 	{
-		if (data == null)
-			return;
+		if (data == null) return;
 
 		if (data.tags != null)
 		{
@@ -156,8 +140,7 @@ class VizProp extends VizSprite
 		flipX = data?.flipX ?? false;
 		flipY = data?.flipY ?? false;
 
-		if (data.layer != null)
-			zIndex = data.layer;
+		if (data.layer != null) zIndex = data.layer;
 
 		antialiasing = data?.antialiasing ?? true;
 
@@ -172,8 +155,7 @@ class VizProp extends VizSprite
 
 	public function dance()
 	{
-		if (!animated)
-			return;
+		if (!animated) return;
 
 		animation.play(bopAnim);
 	}

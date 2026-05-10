@@ -11,13 +11,7 @@ class FileUtil
 
 		if (!FileSystem.exists(dir)) return [];
 
-		var files = [
-			for (file in FileSystem.readDirectory(dir))
-				'$dir/$file'
-		];
-
-		// for (file in files)
-			// trace(file);
+		var files = [for (file in FileSystem.readDirectory(dir)) '$dir/$file'];
 
 		return files;
 	}
@@ -32,11 +26,7 @@ class FileUtil
 
 		for (file in readDirectory(dir))
 		{
-			if (FileSystem.isDirectory(file))
-			{
-				for (subfile in readDirectoryRecursive(file))
-					files.push(subfile);
-			}
+			if (FileSystem.isDirectory(file)) for (subfile in readDirectoryRecursive(file)) files.push(subfile);
 			else files.push(file);
 		}
 

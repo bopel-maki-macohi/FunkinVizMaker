@@ -20,8 +20,7 @@ class EventMacro
 		var curClass = curClassRest.get();
 		if (curClass == null || curClass.name == "CancellableEvent") return fields;
 
-		for (f in fields)
-			if (f.name == "recycle") return fields;
+		for (f in fields) if (f.name == "recycle") return fields;
 
 		// gets all fields
 		var values:Array<EventVar> = [];
@@ -31,8 +30,7 @@ class EventMacro
 			if (field.access.contains(AStatic)) continue;
 
 			var hidden = false;
-			if (field.meta != null) for (m in field.meta)
-				if (m.name == ":dox") hidden = true;
+			if (field.meta != null) for (m in field.meta) if (m.name == ":dox") hidden = true;
 			if (!field.access.contains(APublic)) hidden = true;
 
 			switch (field.kind)
@@ -51,13 +49,12 @@ class EventMacro
 		// add recycle option
 		var func:Function = {
 			args: [
-				for (a in values)
-					{
-						value: a.expr,
-						type: a.type,
-						opt: false,
-						name: a.name
-					}
+				for (a in values) {
+					value: a.expr,
+					type: a.type,
+					opt: false,
+					name: a.name
+				}
 			],
 			expr: {
 				pos: Context.currentPos(),

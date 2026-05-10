@@ -28,8 +28,7 @@ class VizPropGroup extends FlxTypedSpriteGroup<VizProp>
 			clear();
 		}
 
-		for (i => prop in props)
-			loadProp(prop, i, songID);
+		for (i => prop in props) loadProp(prop, i, songID);
 
 		refresh();
 	}
@@ -43,8 +42,7 @@ class VizPropGroup extends FlxTypedSpriteGroup<VizProp>
 			trace('Adding prop: "${sprite.id}"');
 			add(sprite);
 		}
-		else
-			sprite.destroy();
+		else sprite.destroy();
 	}
 
 	public function onBeatHit(curBeat:Int)
