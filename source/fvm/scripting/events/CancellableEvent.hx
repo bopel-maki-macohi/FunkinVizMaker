@@ -2,6 +2,7 @@ package fvm.scripting.events;
 
 import flixel.util.FlxDestroyUtil.IFlxDestroyable;
 
+@:autoBuild(fvm.util.macro.EventMacro.build())
 class CancellableEvent implements IFlxDestroyable
 {
 	/**

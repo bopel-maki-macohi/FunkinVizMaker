@@ -1,26 +1,21 @@
 package fvm.player;
 
+import fvm.scripting.events.visualizer.VisualizerEventCallEvent;
+import fvm.scripting.EventManager;
+import fvm.scripting.ScriptPack;
 import flixel.FlxObject;
 import fvm.data.visualizer.VisualizerRawEventEventData;
-import fvm.data.visualizer.VisualizerRawEventData;
 import flixel.util.FlxTimer;
 import flixel.FlxG;
 import flixel.FlxCamera;
 import fvm.graphics.VizPropGroup;
-import haxe.io.Path;
-import lime.utils.Assets;
-import flixel.FlxSprite;
-import flixel.group.FlxSpriteGroup;
 import fvm.audio.ConductorState;
-import fvm.audio.Conductor;
 import fvm.audio.AudioGroup;
-import flixel.sound.FlxSound;
 import fvm.data.visualizer.VisualizerData;
-import flixel.FlxState;
 
 class PlayState extends ConductorState
 {
-	public var songID:String = 'test';
+	public var song:String = 'test';
 	public var visualizer:VisualizerData;
 
 	public var audioFiles:AudioGroup;
@@ -32,9 +27,20 @@ class PlayState extends ConductorState
 
 	public var eventTimers:Array<FlxTimer> = [];
 
+	public static var instance:PlayState;
+
+	public var sharedScriptPack:ScriptPack;
+	public var localScriptPack:ScriptPack;
+
 	override function create()
 	{
 		super.create();
+
+		instance = null;
+		instance = this;
+
+		localScriptPack = new ScriptPack('visualizer_${song}_local');
+		localScriptPack.load(song.getSongVizualizerPath('scripts/'));
 
 		camGame = new FlxCamera();
 		FlxG.cameras.add(camGame);
@@ -44,12 +50,11 @@ class PlayState extends ConductorState
 
 		camFollow.screenCenter();
 
-		visualizer = new VisualizerData(songID);
+		visualizer = new VisualizerData(song);
 
 		audioFiles = new AudioGroup();
 		audioFiles.loadFiles([
-			for (file in visualizer.audioFiles)
-				songID.getSongVizualizerPath('song/$file'.audioFile())
+			for (file in visualizer.audioFiles) song.getSongVizualizerPath('song/$file'.audioFile())
 		]);
 		audioFiles.play();
 
@@ -58,7 +63,7 @@ class PlayState extends ConductorState
 		props = new VizPropGroup();
 		add(props);
 
-		props.loadProps(songID, visualizer.props);
+		props.loadProps(song, visualizer.props);
 
 		camGame.zoom = visualizer?.stage?.zoom ?? 1.0;
 
@@ -130,6 +135,8 @@ class PlayState extends ConductorState
 
 	public function parseEvent(event:VisualizerRawEventEventData)
 	{
+		call('onEvent', [EventManager.get(VisualizerEventCallEvent).recycle(event.id, event.value)]);
+
 		switch (event.id)
 		{
 			case 'cameraFocus':
@@ -140,5 +147,12 @@ class PlayState extends ConductorState
 					camFollow.setPosition(prop.getGraphicMidpoint().x, prop.getGraphicMidpoint().y);
 				}
 		}
+	}
+
+	override function call(fn:String, ?args:Array<Dynamic>)
+	{
+		super.call(fn, args);
+
+		localScriptPack?.call(fn, args);
 	}
 }

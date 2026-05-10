@@ -1,0 +1,4 @@
+function onCreate()
+{
+	trace('What');
+}

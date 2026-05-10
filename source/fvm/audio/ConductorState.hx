@@ -1,5 +1,6 @@
 package fvm.audio;
 
+import fvm.util.Core;
 import flixel.FlxState;
 
 class ConductorState extends FlxState
@@ -27,4 +28,9 @@ class ConductorState extends FlxState
 	public function beatHit(beat:Int) {}
 
 	public function stepHit(step:Int) {}
+
+	public function call(fn:String, ?args:Array<Dynamic>)
+	{
+		Core.scriptPack?.call(fn, args);
+	}
 }

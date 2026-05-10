@@ -13,6 +13,7 @@
 		"tryCatch": "next",
 		"functionBody": "same",
 		"ifBody": "same",
-		"elseBody": "same"
+		"elseBody": "same",
+		"forBody": "same"
 	}
 }

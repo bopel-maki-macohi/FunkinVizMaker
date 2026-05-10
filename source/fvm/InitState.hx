@@ -3,6 +3,7 @@ package fvm;
 import fvm.util.debug.CrashHandler;
 import flixel.util.FlxTimer;
 import fvm.scripting.Script;
+import fvm.scripting.ScriptPack;
 import fvm.util.macro.DefineMacro;
 import sys.thread.Thread;
 import lime.app.Application;
@@ -11,6 +12,7 @@ import fvm.audio.Conductor;
 import fvm.player.PlayState;
 import flixel.FlxG;
 import flixel.FlxState;
+import fvm.util.Core;
 
 /**
  * Lorem ipsum dolor sit amet
@@ -30,6 +32,9 @@ class InitState extends FlxState
 		initInstances();
 
 		initFlixel();
+
+		Core.scriptPack = new ScriptPack('core');
+		Core.scriptPack.load('core');
 
 		Thread.create(genDocs);
 
@@ -67,6 +72,7 @@ class InitState extends FlxState
 			Sys.sleep(1);
 			Sys.exit(0);
 		}
+		else if (DefineMacro.isDefined('DONT_PLAY')) Sys.exit(0);
 		else FlxG.switchState(() -> new PlayState());
 	}
 }
