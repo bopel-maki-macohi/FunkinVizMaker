@@ -22,7 +22,7 @@ class CrashHandler
 		FlxG.signals.postUpdate.add(errorKeybind);
 
 		#if hl
-		trace('It does not work :D');
+		trace('Crash handler does not work :D');
 		#else
 		trace('Init crash handler');
 		#end
