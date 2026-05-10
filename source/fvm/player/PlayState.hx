@@ -1,5 +1,8 @@
 package fvm.player;
 
+import lime.utils.Assets;
+import flixel.FlxSprite;
+import flixel.group.FlxSpriteGroup;
 import fvm.audio.ConductorState;
 import fvm.audio.Conductor;
 import fvm.audio.AudioGroup;
@@ -13,6 +16,8 @@ class PlayState extends ConductorState
 	public var songVisualizerData:VisualizerData;
 
 	public var audioFiles:AudioGroup;
+
+	public var props:FlxSpriteGroup;
 
 	override function create()
 	{
@@ -28,6 +33,49 @@ class PlayState extends ConductorState
 		audioFiles.play();
 
 		conductor.setBPM(songVisualizerData.bpm);
+
+		props = new FlxSpriteGroup();
+		add(props);
+
+		for (prop in songVisualizerData.props)
+		{
+			var assetPath:String = null;
+
+			if (prop.asset == null)
+				continue;
+
+			final localPath = songID.getSongVizualizerPath('props/${prop.asset}'.imageFile());
+			final sharedPath = prop.asset.getSharedPath().imageFile();
+
+			if (Assets.exists(localPath) && assetPath == null)
+				assetPath = localPath;
+			else
+			{
+				if (assetPath == null)
+					trace('No local prop asset path: $localPath');
+			}
+
+			if (Assets.exists(sharedPath) && assetPath == null)
+				assetPath = sharedPath;
+			else
+			{
+				if (assetPath == null)
+					trace('No shared prop asset path: $localPath');
+			}
+
+			if (assetPath == null)
+				continue;
+
+			switch (prop.type)
+			{
+				case bopper:
+
+				case still:
+					var staticSprite = new FlxSprite(0, 0, assetPath);
+					staticSprite.screenCenter();
+					props.add(staticSprite);
+			}
+		}
 	}
 
 	/**

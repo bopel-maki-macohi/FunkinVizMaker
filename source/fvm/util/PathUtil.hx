@@ -22,4 +22,7 @@ class PathUtil
 
 	public static inline function audioFile(path:String):String
 		return '$path.ogg';
+
+	public static inline function imageFile(path:String):String
+		return '$path.png';
 }

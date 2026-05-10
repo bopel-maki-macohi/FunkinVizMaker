@@ -9,4 +9,6 @@ typedef VisualizerRawData =
 	audioFiles:Array<String>,
 
 	bpm:Float,
+
+	props:Array<VisualizerRawPropData>,
 }

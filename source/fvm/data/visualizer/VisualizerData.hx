@@ -49,4 +49,12 @@ class VisualizerData extends DataClass<VisualizerRawData>
 
 	function set_bpm(bpm:Float):Float
 		return data.bpm = bpm;
+
+	public var props(get, set):Array<VisualizerRawPropData>;
+
+	function get_props():Array<VisualizerRawPropData>
+		return data.props;
+
+	function set_props(props:Array<VisualizerRawPropData>):Array<VisualizerRawPropData>
+		return data.props = props;
 }

@@ -4,6 +4,21 @@
         "Voices-bf-pixel",
         "Voices-bf"
     ],
-
-    "bpm": 150.0
+    "bpm": 150.0,
+    "props": [
+        {
+            "type": "still",
+            "asset": "bf-icon"
+        },
+        {
+            "type": "bopper",
+            "asset": "bf",
+            "anims": [
+                {
+                    "name": "idle",
+                    "prefix": "BF Idle Dance"
+                }
+            ]
+        }
+    ]
 }
