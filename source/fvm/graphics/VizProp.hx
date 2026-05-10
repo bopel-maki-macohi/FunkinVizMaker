@@ -1,5 +1,6 @@
 package fvm.graphics;
 
+import fvm.scripting.events.visualizer.VisualizerPropEvent;
 import fvm.util.ScriptUtil;
 import fvm.util.Core;
 import fvm.scripting.events.visualizer.VisualizerPropParseTagEvent;
@@ -50,6 +51,7 @@ class VizProp extends VizSprite
 		if (data.bopType != null) this.bopType = data.bopType;
 
 		if (data.id != null) this.id = data.id;
+		scriptPack = new ScriptPack(id);
 
 		var assetPath:String = data.asset.imageFile().getPropAsset(id, songID);
 
@@ -103,9 +105,9 @@ class VizProp extends VizSprite
 				dance();
 
 				loaded = true;
-		}
 
-		scriptPack = new ScriptPack(id);
+			default:
+		}
 
 		if (loaded) parseGeneralData();
 	}
@@ -123,8 +125,6 @@ class VizProp extends VizSprite
 					case 'center', 'screencenter':
 						screenCenter();
 				}
-
-				ScriptUtil.call([scriptPack], 'parsePropTag', [EventManager.get(VisualizerPropParseTagEvent).recycle(this, tag)]);
 			}
 		}
 
@@ -154,7 +154,6 @@ class VizProp extends VizSprite
 		if (data.layer != null) zIndex = data.layer;
 
 		antialiasing = data?.antialiasing ?? true;
-
 		// trace(zIndex);
 	}
 
