@@ -58,7 +58,7 @@ class ScriptPack
 
 			if (proceed)
 			{
-				trace('${script.file} $fn');
+				// trace('${script.file} $fn');
 				script.call(fn, args);
 			}
 		}
