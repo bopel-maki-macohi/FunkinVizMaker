@@ -6,6 +6,9 @@ import fvm.player.PlayState;
 import flixel.FlxG;
 import flixel.FlxState;
 
+/**
+ * Lorem ipsum dolor sit amet
+ */
 class InitState extends FlxState
 {
 	override public function create()
