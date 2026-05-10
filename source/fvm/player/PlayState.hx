@@ -30,6 +30,9 @@ class PlayState extends ConductorState
 		conductor.setBPM(songVisualizerData.bpm);
 	}
 
+	/**
+	 * TODO: Make this open a pause state
+	 */
 	override function onFocusLost()
 	{
 		super.onFocusLost();
