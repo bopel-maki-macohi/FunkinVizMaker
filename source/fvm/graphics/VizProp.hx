@@ -141,6 +141,9 @@ class VizProp extends VizSprite
 			scrollFactor.x = data?.scrollFactor[0] ?? 1;
 			scrollFactor.y = data?.scrollFactor[1] ?? 1;
 		}
+
+		flipX = data?.flipX ?? false;
+		flipY = data?.flipY ?? false;
 	}
 
 	public function dance()

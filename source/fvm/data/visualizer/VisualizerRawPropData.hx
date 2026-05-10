@@ -12,6 +12,9 @@ typedef VisualizerRawPropData =
 	?position:Array<Float>,
 	?scale:Array<Float>,
 	?scrollFactor:Array<Float>,
+
+	?flipX:Bool,
+	?flipY:Bool,
 	
 	?bopAnim:String,
     ?anims:Array<VisualizerRawAnimationData>,

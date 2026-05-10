@@ -7,18 +7,8 @@
     "bpm": 150.0,
     "props": [
         {
-            "type": "still",
-            "asset": "bf-icon",
-            "tags": [
-                "center"
-            ],
-            "position": [
-                360
-            ]
-        },
-        {
             "type": "bopperSparrow",
-            "asset": "bf",
+            "asset": "bf-pixel",
             "tags": [
                 "center"
             ],
@@ -28,15 +18,30 @@
             "anims": [
                 {
                     "name": "idle",
-                    "prefix": "BF idle dance instance"
-                },
-                {
-                    "name": "hey!!",
-                    "prefix": "BF HEY!! instance 1",
-                    "altAsset": "bf-hey"
+                    "prefix": "BF IDLE instance 1"
                 }
             ],
-            "bopAnim": "hey!!"
+            "scale": [
+                6,
+                6
+            ],
+            "flipX": true
+        },
+        {
+            "type": "bopperSparrow",
+            "asset": "bf",
+            "tags": [
+                "center"
+            ],
+            "position": [
+                360
+            ],
+            "anims": [
+                {
+                    "name": "idle",
+                    "prefix": "BF idle dance instance 1"
+                }
+            ]
         }
     ]
 }
