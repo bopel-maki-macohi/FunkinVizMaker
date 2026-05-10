@@ -129,7 +129,7 @@
             }
         },
         {
-            "time": 4000.0,
+            "time": 5000.0,
             "event": {
                 "id": "cameraFocus",
                 "value": "0"
