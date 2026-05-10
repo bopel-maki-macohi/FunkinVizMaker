@@ -101,10 +101,38 @@
             }
         },
         {
-            "time": 0.0,
+            "time": 1000.0,
             "event": {
                 "id": "cameraFocus",
                 "value": "bf"
+            }
+        },
+        {
+            "time": 2000.0,
+            "event": {
+                "id": "cameraFocus",
+                "value": "bf-pixel"
+            }
+        },
+        {
+            "time": 3000.0,
+            "event": {
+                "id": "cameraFocus",
+                "value": "bf"
+            }
+        },
+        {
+            "time": 4000.0,
+            "event": {
+                "id": "cameraFocus",
+                "value": "bf-pixel"
+            }
+        },
+        {
+            "time": 4000.0,
+            "event": {
+                "id": "cameraFocus",
+                "value": "0"
             }
         }
     ]
