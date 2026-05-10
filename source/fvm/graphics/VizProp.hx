@@ -148,7 +148,9 @@ class VizProp extends VizSprite
 		if (data.layer != null)
 			zIndex = data.layer;
 
-		trace(zIndex);
+		antialiasing = data?.antialiasing ?? true;
+
+		// trace(zIndex);
 	}
 
 	public function dance()

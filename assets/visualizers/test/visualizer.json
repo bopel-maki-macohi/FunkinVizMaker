@@ -71,7 +71,8 @@
                 6,
                 6
             ],
-            "flipX": true
+            "flipX": true,
+            "antialiasing": false
         },
         {
             "layer": 200,
