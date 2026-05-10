@@ -1,5 +1,6 @@
 package fvm;
 
+import fvm.util.debug.CrashHandler;
 import flixel.util.FlxTimer;
 import fvm.scripting.Script;
 import fvm.util.macro.DefineMacro;
@@ -23,6 +24,8 @@ class InitState extends FlxState
 	override public function create()
 	{
 		super.create();
+
+		CrashHandler.init();
 
 		initInstances();
 
