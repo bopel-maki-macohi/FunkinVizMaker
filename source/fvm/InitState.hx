@@ -1,4 +1,4 @@
-package;
+package fvm;
 
 import flixel.FlxSprite;
 import fvm.audio.Conductor;
