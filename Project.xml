@@ -32,6 +32,13 @@
 
 	<!-- _________________________________ Custom _______________________________ -->
 
+	<haxeflag name="--macro"
+		value="addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxBasic())', 'flixel.FlxBasic')" />
+
+	<haxeflag
+		name="--macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedGroup')" />
+	<haxeflag
+		name="--macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedSpriteGroup')" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

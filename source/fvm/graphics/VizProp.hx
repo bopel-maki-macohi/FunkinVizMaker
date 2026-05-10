@@ -144,6 +144,11 @@ class VizProp extends VizSprite
 
 		flipX = data?.flipX ?? false;
 		flipY = data?.flipY ?? false;
+
+		if (data.layer != null)
+			zIndex = data.layer;
+
+		trace(zIndex);
 	}
 
 	public function dance()

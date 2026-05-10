@@ -7,6 +7,7 @@ typedef VisualizerRawPropData =
 
 	?tags:Array<String>,
 
+	?layer:Int,
 	?alpha:Float,
 
 	?position:Array<Float>,

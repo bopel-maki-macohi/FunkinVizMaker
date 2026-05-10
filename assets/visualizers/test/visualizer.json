@@ -7,13 +7,54 @@
     "bpm": 150.0,
     "props": [
         {
+            "layer": 10,
+            "type": "still",
+            "asset": "stageback",
+            "position": [
+                -600,
+                -200
+            ],
+            "scrollFactor": [
+                0.9,
+                0.9
+            ]
+        },
+        {
+            "layer": 20,
+            "type": "still",
+            "asset": "stagefront",
+            "position": [
+                -650,
+                -600
+            ],
+            "scrollFactor": [
+                0.9,
+                0.9
+            ]
+        },
+        {
+            "layer": 30,
+            "type": "still",
+            "asset": "stagecurtains",
+            "position": [
+                -500,
+                -300
+            ],
+            "scrollFactor": [
+                1.3,
+                1.3
+            ]
+        },
+        {
+            "layer": 100,
             "type": "bopperSparrow",
             "asset": "bf-pixel",
             "tags": [
                 "center"
             ],
             "position": [
-                -360
+                335,
+                885
             ],
             "anims": [
                 {
@@ -28,13 +69,15 @@
             "flipX": true
         },
         {
+            "layer": 200,
             "type": "bopperSparrow",
             "asset": "bf",
             "tags": [
                 "center"
             ],
             "position": [
-                360
+                989.5,
+                885
             ],
             "anims": [
                 {

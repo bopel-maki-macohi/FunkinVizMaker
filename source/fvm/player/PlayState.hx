@@ -40,6 +40,8 @@ class PlayState extends ConductorState
 		add(props);
 
 		props.loadProps(songID, songVisualizerData.props);
+
+		refresh();
 	}
 
 	/**

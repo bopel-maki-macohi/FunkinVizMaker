@@ -1,5 +1,7 @@
 package fvm.graphics;
 
+import flixel.util.FlxSort;
+import fvm.util.SortUtil;
 import fvm.graphics.VizProp;
 import haxe.io.Path;
 import lime.utils.Assets;
@@ -29,9 +31,9 @@ class VizPropGroup extends FlxTypedSpriteGroup<VizProp>
 		}
 
 		for (prop in props)
-		{
 			loadProp(prop, songID);
-		}
+
+		refresh();
 	}
 
 	public function loadProp(prop:VisualizerRawPropData, ?songID:String)
