@@ -93,7 +93,7 @@ class PlayState extends ConductorState
 	{
 		super.stepHit(step);
 
-		audioFiles.resyncCheck(conductor.songPosition);
+		audioFiles.resyncCheck();
 
 		props.onStepHit(step);
 	}
