@@ -12,6 +12,8 @@ class AudioGroup extends FlxSoundGroup
 		{
 			if (Assets.exists(file))
 				add(new FlxSound().loadEmbedded(file));
+            else 
+                trace('Audio File doesnt exist: $file');
 		}
 	}
 

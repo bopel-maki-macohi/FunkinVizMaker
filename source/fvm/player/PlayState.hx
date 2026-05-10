@@ -20,7 +20,7 @@ class PlayState extends FlxState
 
 		audioFiles = new AudioGroup();
 		audioFiles.loadFiles([
-			for (file in songVisualizerData.audioFiles) songID.getSongVizualizerPath('songs/$file'.audioFile())
+			for (file in songVisualizerData.audioFiles) songID.getSongVizualizerPath('song/$file'.audioFile())
 		]);
         audioFiles.play();
 	}
