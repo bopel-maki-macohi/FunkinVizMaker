@@ -82,7 +82,7 @@ class CrashHandler
 		errorMessage += '\n$spacing\n';
 
 		errorMessage += 'Crash log saved to "$path"\n';
-		errorMessage += 'Please report to the github: https://github.com/bopel-maki-macohi/Fu-kit/issues';
+		errorMessage += 'Please report to the github: https://github.com/bopel-maki-macohi/FunkinVizMaker/issues';
 
 		File.saveContent(path, errorMessage);
 		Application.current.window.alert(errorMessage, UE);
