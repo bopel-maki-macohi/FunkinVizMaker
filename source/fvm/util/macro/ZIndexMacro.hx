@@ -1,6 +1,5 @@
 package fvm.util.macro;
 
-#if (macro && !display)
 import haxe.macro.Context;
 import haxe.macro.Expr;
 
@@ -65,4 +64,3 @@ class ZIndexMacro
 		return fields;
 	}
 }
-#end

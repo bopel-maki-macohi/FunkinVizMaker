@@ -11,6 +11,10 @@ import flixel.FlxState;
  */
 class InitState extends FlxState
 {
+	/**
+	 * Runs initalization functions
+	 * and then boots you to `PlayState`
+	 */
 	override public function create()
 	{
 		super.create();
@@ -20,10 +24,5 @@ class InitState extends FlxState
 		FlxSprite.defaultAntialiasing = true;
 
 		FlxG.switchState(() -> new PlayState());
-	}
-
-	override public function update(elapsed:Float)
-	{
-		super.update(elapsed);
 	}
 }
