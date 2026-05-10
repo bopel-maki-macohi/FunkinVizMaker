@@ -55,7 +55,7 @@ class AudioGroup extends FlxSoundGroup
 
 			if (timeDifference < -range || timeDifference > range)
 			{
-				trace('$timeDifference ms difference');
+				trace('Sound #${i + 1} : ${timeDifference}ms difference');
 
 				sound.pause();
 				sound.time = sounds[0].time;
