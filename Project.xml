@@ -40,7 +40,6 @@
 	<haxeflag
 		name="--macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedSpriteGroup')" />
 
-	<define name="GENERATE_DOCS" if="debug" />
 	<section if="GENERATE_DOCS">
 		<haxeflag name="-xml docs/doc.xml" />
 		<haxeflag name="--no-output" />
