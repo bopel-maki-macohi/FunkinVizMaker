@@ -1,1 +1,0 @@
-haxelib run dox -i docs -o docs/pages
