@@ -1,5 +1,6 @@
 package fvm;
 
+import flixel.util.FlxTimer;
 import fvm.scripting.Script;
 import fvm.util.macro.DefineMacro;
 import sys.thread.Thread;
@@ -60,8 +61,9 @@ class InitState extends FlxState
 		if (DefineMacro.isDefined('HSCRIPT_TESTING'))
 		{
 			var scriptTeser:Script = new Script('assets/TestScript.hx');
+			Sys.sleep(1);
+			Sys.exit(0);
 		}
-
-		FlxG.switchState(() -> new PlayState());
+		else FlxG.switchState(() -> new PlayState());
 	}
 }
