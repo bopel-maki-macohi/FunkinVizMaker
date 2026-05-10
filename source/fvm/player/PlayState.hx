@@ -21,7 +21,7 @@ import flixel.FlxState;
 class PlayState extends ConductorState
 {
 	public var songID:String = 'test';
-	public var songVisualizerData:VisualizerData;
+	public var visualizer:VisualizerData;
 
 	public var audioFiles:AudioGroup;
 
@@ -44,25 +44,25 @@ class PlayState extends ConductorState
 
 		camFollow.screenCenter();
 
-		songVisualizerData = new VisualizerData(songID);
+		visualizer = new VisualizerData(songID);
 
 		audioFiles = new AudioGroup();
 		audioFiles.loadFiles([
-			for (file in songVisualizerData.audioFiles)
+			for (file in visualizer.audioFiles)
 				songID.getSongVizualizerPath('song/$file'.audioFile())
 		]);
 		audioFiles.play();
 
-		conductor.setBPM(songVisualizerData.bpm);
+		conductor.setBPM(visualizer.bpm);
 
 		props = new VizPropGroup();
 		add(props);
 
-		props.loadProps(songID, songVisualizerData.props);
+		props.loadProps(songID, visualizer.props);
 
-		camGame.zoom = songVisualizerData?.stage?.zoom ?? 1.0;
+		camGame.zoom = visualizer?.stage?.zoom ?? 1.0;
 
-		for (event in songVisualizerData.events)
+		for (event in visualizer.events)
 		{
 			var timer = new FlxTimer();
 			timer.start(event.time / 1000, t ->
@@ -77,7 +77,7 @@ class PlayState extends ConductorState
 			eventTimers.push(timer);
 		}
 
-		camGame.follow(camFollow, LOCKON, songVisualizerData?.stage?.camSpeed ?? 0.4);
+		camGame.follow(camFollow, LOCKON, visualizer?.stage?.camSpeed ?? 0.4);
 		camGame.focusOn(camFollow.getPosition());
 
 		refresh();
