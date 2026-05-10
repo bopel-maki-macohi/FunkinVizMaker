@@ -1,5 +1,6 @@
 package fvm.player;
 
+import fvm.util.ScriptUtil;
 import fvm.scripting.events.visualizer.VisualizerEventCallEvent;
 import fvm.scripting.EventManager;
 import fvm.scripting.ScriptPack;
@@ -133,13 +134,13 @@ class PlayState extends ConductorState
 
 	public function parseEvent(event:VisualizerRawEventEventData)
 	{
-		call('onEvent', [EventManager.get(VisualizerEventCallEvent).recycle(event.id, event.value)]);
+		callEvent('onEvent', EventManager.get(VisualizerEventCallEvent).recycle(event.id, event.value));
 	}
 
 	override function call(fn:String, ?args:Array<Dynamic>)
 	{
 		super.call(fn, args);
 
-		localScriptPack?.call(fn, args);
+		ScriptUtil.call([localScriptPack], fn, args);
 	}
 }

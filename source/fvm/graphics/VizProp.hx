@@ -1,5 +1,10 @@
 package fvm.graphics;
 
+import fvm.util.ScriptUtil;
+import fvm.util.Core;
+import fvm.scripting.events.visualizer.VisualizerPropParseTagEvent;
+import fvm.scripting.EventManager;
+import fvm.scripting.ScriptPack;
 import flixel.FlxG;
 import flixel.graphics.frames.FlxAtlasFrames;
 import animate.FlxAnimateFrames;
@@ -14,6 +19,8 @@ class VizProp extends VizSprite
 	public var songID:String;
 
 	public var id:String;
+
+	public var scriptPack:ScriptPack;
 
 	override public function new(data:VisualizerRawPropData, propNum:Int, ?songID:String)
 	{
@@ -70,7 +77,7 @@ class VizProp extends VizSprite
 						var altAtlas = Path.withoutExtension(altAssetPath).getSparrowAtlas();
 
 						if (altAtlas == null) return;
-						
+
 						frameList.push(altAtlas);
 					}
 				}
@@ -98,6 +105,8 @@ class VizProp extends VizSprite
 				loaded = true;
 		}
 
+		scriptPack = new ScriptPack(id);
+
 		if (loaded) parseGeneralData();
 	}
 
@@ -114,6 +123,8 @@ class VizProp extends VizSprite
 					case 'center', 'screencenter':
 						screenCenter();
 				}
+
+				ScriptUtil.call([scriptPack], 'parsePropTag', [EventManager.get(VisualizerPropParseTagEvent).recycle(this, tag)]);
 			}
 		}
 
