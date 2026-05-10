@@ -5,7 +5,7 @@
 --library hxp
 --library hxcpp
 
--C docs
+-cp source
 -D doc-gen
 
 -D FLX_NO_DEBUG
@@ -18,9 +18,10 @@
 
 --macro include('fvm')
 
+--dce no
 --no-output
 --each
 
 --next
--xml cpp.xml
--cpp dummy.exe
+-neko docs/main.n
+-cmd neko docs/main.n
