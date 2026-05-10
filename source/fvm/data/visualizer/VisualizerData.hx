@@ -36,41 +36,31 @@ class VisualizerData extends DataClass<VisualizerRawData>
 
 	public var audioFiles(get, set):Array<String>;
 
-	function get_audioFiles():Array<String>
-		return data.audioFiles;
+	function get_audioFiles():Array<String> return data.audioFiles;
 
-	function set_audioFiles(audioFiles:Array<String>):Array<String>
-		return data.audioFiles = audioFiles;
+	function set_audioFiles(audioFiles:Array<String>):Array<String> return data.audioFiles = audioFiles;
 
 	public var bpm(get, set):Float;
 
-	function get_bpm():Float
-		return data.bpm;
+	function get_bpm():Float return data.bpm;
 
-	function set_bpm(bpm:Float):Float
-		return data.bpm = bpm;
+	function set_bpm(bpm:Float):Float return data.bpm = bpm;
 
 	public var stage(get, set):VisualizerRawStageData;
 
-	function get_stage():VisualizerRawStageData
-		return data.stage;
+	function get_stage():VisualizerRawStageData return data.stage;
 
-	function set_stage(stage:VisualizerRawStageData):VisualizerRawStageData
-		return data.stage = stage;
+	function set_stage(stage:VisualizerRawStageData):VisualizerRawStageData return data.stage = stage;
 
 	public var props(get, set):Array<VisualizerRawPropData>;
 
-	function get_props():Array<VisualizerRawPropData>
-		return data.props;
+	function get_props():Array<VisualizerRawPropData> return data.props;
 
-	function set_props(props:Array<VisualizerRawPropData>):Array<VisualizerRawPropData>
-		return data.props = props;
+	function set_props(props:Array<VisualizerRawPropData>):Array<VisualizerRawPropData> return data.props = props;
 
 	public var events(get, set):Array<VisualizerRawEventData>;
 
-	function get_events():Array<VisualizerRawEventData>
-		return data.events;
+	function get_events():Array<VisualizerRawEventData> return data.events;
 
-	function set_events(events:Array<VisualizerRawEventData>):Array<VisualizerRawEventData>
-		return data.events = events;
+	function set_events(events:Array<VisualizerRawEventData>):Array<VisualizerRawEventData> return data.events = events;
 }

@@ -17,10 +17,10 @@ typedef VisualizerRawPropData =
 	?flipX:Bool,
 	?flipY:Bool,
 	?antialiasing:Bool,
-	
+
 	?id:String,
 
 	?bopAnim:String,
-    ?anims:Array<VisualizerRawAnimationData>,
+	?anims:Array<VisualizerRawAnimationData>,
 	?bopType:VisualizerPropBopType,
 }

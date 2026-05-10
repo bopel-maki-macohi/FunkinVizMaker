@@ -28,13 +28,11 @@ class Conductor
 
 	public var crochet(get, never):Float;
 
-	function get_crochet():Float
-		return 60 / bpm * 1000;
+	function get_crochet():Float return 60 / bpm * 1000;
 
 	public var quaver(get, never):Float;
 
-	function get_quaver():Float
-		return crochet / 4;
+	function get_quaver():Float return crochet / 4;
 
 	public var stepOffset:Int = 0;
 	public var songPositionOffset:Float = 0;
