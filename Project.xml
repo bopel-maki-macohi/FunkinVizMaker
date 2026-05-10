@@ -35,10 +35,14 @@
 	<haxeflag name="--macro"
 		value="addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxBasic())', 'flixel.FlxBasic')" />
 
-	<haxeflag
-		name="--macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedGroup')" />
-	<haxeflag
-		name="--macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedSpriteGroup')" />
+	<haxeflag name="--macro"
+		value="addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedGroup')" />
+
+	<haxeflag name="--macro"
+		value="addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedSpriteGroup')" />
+
+	<haxeflag name="--macro"
+		value="include('fvm', true)" />
 
 	<section if="GENERATE_DOCS">
 		<haxeflag name="-xml docs/doc.xml" />
