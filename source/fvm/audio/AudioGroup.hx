@@ -1,5 +1,6 @@
 package fvm.audio;
 
+import haxe.io.Path;
 import flixel.FlxG;
 import flixel.sound.FlxSound;
 import lime.utils.Assets;
@@ -44,7 +45,7 @@ class AudioGroup extends FlxSoundGroup
 	{
 		if (Assets.exists(file))
 		{
-			soundKeys.push(file);
+			soundKeys.push(Path.withoutDirectory(Path.withoutExtension(file)));
 			add(new FlxSound().loadEmbedded(file));
 		}
 		else
@@ -92,11 +93,11 @@ class AudioGroup extends FlxSoundGroup
 
 			if (timeDifference < -range || timeDifference > range)
 			{
-				trace('${getSoundKey(i)} : ${timeDifference}ms difference');
-
-				sound.pause();
 				sound.time = sounds[0].time;
 				sound.resume();
+
+				trace('"${getSoundKey(i)}" : ${timeDifference}ms difference');
+				timeDifference = sounds[0].time - sound.time;
 			}
 		}
 	}
