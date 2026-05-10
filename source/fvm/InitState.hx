@@ -1,5 +1,6 @@
 package fvm;
 
+import lime.app.Application;
 import flixel.FlxSprite;
 import fvm.audio.Conductor;
 import fvm.player.PlayState;
@@ -19,10 +20,34 @@ class InitState extends FlxState
 	{
 		super.create();
 
-		Conductor.instance = new Conductor();
+		initInstances();
 
-		FlxSprite.defaultAntialiasing = true;
+		initFlixel();
+
+		genDocs();
 
 		FlxG.switchState(() -> new PlayState());
+	}
+
+	public function initInstances()
+	{
+		Conductor.instance = new Conductor();
+	}
+
+	public function initFlixel()
+	{
+		FlxSprite.defaultAntialiasing = true;
+	}
+
+	/**
+	 * If `GEN_DOCS` is defined,
+	 * documentation will be generated and you will be sent to the page
+	 */
+	public function genDocs()
+	{
+		#if GEN_DOCS
+		Sys.command('..\\..\\..\\..\\docs\\docs-windows');
+		Sys.command('..\\..\\..\\..\\docs\\pages\\index.html');
+		#end
 	}
 }
