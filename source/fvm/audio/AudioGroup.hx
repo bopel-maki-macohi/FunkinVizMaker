@@ -1,6 +1,5 @@
 package fvm.audio;
 
-import flixel.util.FlxTimer;
 import haxe.io.Path;
 import flixel.FlxG;
 import flixel.sound.FlxSound;
@@ -73,33 +72,6 @@ class AudioGroup extends FlxSoundGroup
 			sound.play(forceRestart, startTime);
 	}
 
-	/**
-	 * Checks each sound to make sure that
-	 * it is in sync with the `targetTime`
-	 * or within a certain range.
-	 * 
-	 * It also turns on sounds that are paused
-	 * 
-	 * @param targetTime Desired song position in milliseconds
-	 * @param range Range in milliseconds
-	 */
-	public function resyncCheck(targetTime:Float, range:Float = 3000)
-	{
-		for (i => sound in sounds)
-		{
-			var timeDifference:Float = targetTime - sound.time;
-
-			if (Math.abs(timeDifference) > range)
-			{
-				trace('"${getSoundKey(i)}" : ${Math.abs(timeDifference)}ms difference');
-
-				sound.pause();
-
-				sound.time = targetTime;
-			}
-
-			if (!sound.playing)
-				sound.resume();
-		}
-	}
+	@:noDoc
+	public function resyncCheck() {}
 }
