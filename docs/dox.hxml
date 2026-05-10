@@ -1,13 +1,20 @@
 --library flixel
+--library flixel-animate
 --library hxp
 
+-C source
 -D doc-gen
-# --macro include('flash')
-# --macro include('lime')
-# --macro include('openfl')
---macro include('fixel')
+
+-D FLX_NO_DEBUG
+
+--macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxBasic())', 'flixel.FlxBasic')
+--macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedGroup')
+--macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedSpriteGroup')
+
+--macro include('flixel-animate')
+--macro include('flixel')
 --macro include('fvm')
---no-output
+
 --each
 
 --next
