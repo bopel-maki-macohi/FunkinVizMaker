@@ -1,5 +1,6 @@
 package fvm;
 
+import sys.thread.Thread;
 import lime.app.Application;
 import flixel.FlxSprite;
 import fvm.audio.Conductor;
@@ -24,7 +25,7 @@ class InitState extends FlxState
 
 		initFlixel();
 
-		genDocs();
+		Thread.create(genDocs);
 
 		FlxG.switchState(() -> new PlayState());
 	}
@@ -41,7 +42,8 @@ class InitState extends FlxState
 
 	/**
 	 * If `GEN_DOCS` is defined,
-	 * documentation will be generated and you will be sent to the page
+	 * documentation will be generated
+	 * and you will be sent to the page
 	 */
 	public function genDocs()
 	{
