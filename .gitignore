@@ -3,5 +3,6 @@ export/
 dump/
 
 docs/pages/
+docs/doc.xml
 
 .DS_Store

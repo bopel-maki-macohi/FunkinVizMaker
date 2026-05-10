@@ -43,11 +43,10 @@
 	<define name="GENERATE_DOCS" if="debug" />
 	<section if="GENERATE_DOCS">
 		<haxeflag name="-xml docs/doc.xml" />
+		<haxeflag name="--no-output" />
 
 		<define name="doc-gen" />
 		<define name="DOCUMENTATION" />
-
-		<haxedef name="--no-output" />
 	</section>
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
