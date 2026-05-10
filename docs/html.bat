@@ -1,1 +1,1 @@
-haxelib run dox -i docs -o docs/pages
+haxelib run dox -i docs -o docs/pages --title "FUNKIN VIZ MAKER DOCS" --toplevel-package fvm -D source-path "https://github.com/bopel-maki-macohi/FunkinVizMaker/tree/main/source/"
