@@ -1,5 +1,6 @@
 package fvm.scripting;
 
+import fvm.util.macro.DefineMacro;
 import lime.utils.Assets;
 import hscript.Parser;
 import hscript.Interp;
@@ -103,5 +104,15 @@ class Script
 	{
 		interp = null;
 		parser = null;
+	}
+
+	/**
+	 * Gets the default defines for a script.
+	 * Includes all of the defines that the build was compiled with.
+	 */
+	public static function getDefaultPreprocessors():Map<String, Dynamic>
+	{
+		var defines = DefineMacro.getMapDefines();
+		return defines;
 	}
 }

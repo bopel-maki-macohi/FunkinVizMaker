@@ -17,6 +17,8 @@ class PathUtil
 
 	public static inline function getSongVizualizerPath(songID:String, path:String):String return getVisualizersPath('$songID/$path');
 
+	public static inline function getEventsFolder(path:String):String return 'events/$path';
+
 	public static inline function jsonFile(path:String):String return '$path.json';
 
 	public static inline function audioFile(path:String):String return '$path.ogg';
@@ -26,6 +28,8 @@ class PathUtil
 	public static inline function xmlFile(path:String):String return '$path.xml';
 
 	public static inline function getSparrowAtlas(rawPath:String):FlxAtlasFrames return FlxAtlasFrames.fromSparrow(rawPath.imageFile(), rawPath.xmlFile());
+
+	public static inline function scriptFile(path:String):String return '$path.hx';
 
 	public static function getPropAsset(rawPath:String, id:String, ?songID:String):String
 	{
