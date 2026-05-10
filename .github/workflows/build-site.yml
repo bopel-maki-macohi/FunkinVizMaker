@@ -24,19 +24,18 @@ concurrency:
 jobs:
   # Single deploy job since we're just deploying
   deploy:
+    runs-on: windows-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: windows-latest
+    
     steps:
-      - name: Check directoriy
-        run: dir
-
-      - name: Generate docs file
-        run: docs\docs-windows.bat
-
       - name: Generate docs site
-        run: docs\html.bat
+        run: |
+          dir
+          docs\docs-windows.bat
+          docs\html.bat
 
       - name: Checkout
         uses: actions/checkout@v4
