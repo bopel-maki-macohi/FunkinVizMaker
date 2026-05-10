@@ -21,7 +21,7 @@ class Script
 		var ast = parser.parseString(expr, file);
 		interp.execute(ast);
 
-        call('onCreate');
+		call('onCreate');
 	}
 
 	/**
@@ -54,5 +54,54 @@ class Script
 		catch (e) {}
 		// @formatter:on
 		return null;
+	}
+
+	/**
+	 * Returns a field from the script.
+	 * @param field 	The field that needs to be looked for.
+	 */
+	public function get(field:String):Dynamic
+	{
+		if (interp == null) trace('Variables cannot be get');
+
+		return interp != null ? interp.variables.get(field) : false;
+	}
+
+	/**
+	 * Sets a new field to the script
+	 * @param name          The name of your new field, scripts will be able to use the field with the name given.
+	 * @param value         The value for your new field.
+	 * @param allowOverride If set to true, when setting the new field, we will ignore any previously set fields of the same name.
+	 */
+	public function set(name:String, value:Dynamic, allowOverride:Bool = true):Void
+	{
+		if (interp == null || interp.variables == null)
+		{
+			trace('Variables cannot be set');
+			return;
+		}
+
+		if (allowOverride || !interp.variables.exists(name)) interp.variables.set(name, value);
+	}
+
+	/**
+	 * Checks the existance of a field or method within your script.
+	 * @param field 		The field to check if exists.
+	 */
+	public function exists(field:String):Bool
+	{
+		return (interp != null) ? interp.variables.exists(field) : false;
+	}
+
+	/**
+	 * Destroys the current instance of this script
+	 * along with its parser,.
+	 *
+	 * **WARNING**: this action CANNOT be undone.
+	**/
+	public function destroy():Void
+	{
+		interp = null;
+		parser = null;
 	}
 }
