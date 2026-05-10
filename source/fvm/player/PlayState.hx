@@ -75,7 +75,6 @@ class PlayState extends ConductorState
 		super.update(elapsed);
 
 		audioFiles.update(elapsed);
-		audioFiles.resyncCheck();
 
 		conductor.songPosition += elapsed * 1000;
 		conductor.update();
@@ -93,6 +92,8 @@ class PlayState extends ConductorState
 	override public function stepHit(step:Int)
 	{
 		super.stepHit(step);
+
+		audioFiles.resyncCheck(conductor.songPosition);
 
 		props.onStepHit(step);
 	}
