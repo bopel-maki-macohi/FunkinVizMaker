@@ -31,7 +31,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
-      - name: Generate docs site
+      - name: Generate docs site plz
         run: |
           dir
           docs\docs-windows.bat
