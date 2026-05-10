@@ -4,6 +4,11 @@
       "name": "flixel",
       "type": "haxelib",
       "version": null
+    },
+    {
+      "name": "flixel-animate",
+      "type": "haxelib",
+      "version": null
     }
   ]
 }

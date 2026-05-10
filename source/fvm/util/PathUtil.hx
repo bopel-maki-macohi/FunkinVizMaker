@@ -1,5 +1,7 @@
 package fvm.util;
 
+import lime.utils.Assets;
+import fvm.data.visualizer.VisualizerRawPropData;
 import flixel.graphics.frames.FlxAtlasFrames;
 
 class PathUtil
@@ -33,4 +35,30 @@ class PathUtil
 
 	public static inline function getSparrowAtlas(rawPath:String):FlxAtlasFrames
 		return FlxAtlasFrames.fromSparrow(rawPath.imageFile(), rawPath.xmlFile());
+
+	public static function getPropAsset(rawPath:String, ?songID:String):String
+	{
+		var assetPath:String = null;
+
+		final localPath = songID.getSongVizualizerPath('props/${rawPath}');
+		final sharedPath = rawPath.getSharedPath();
+
+		if (Assets.exists(localPath) && assetPath == null)
+			assetPath = localPath;
+		else
+		{
+			if (assetPath == null)
+				trace('No local prop asset path: $localPath');
+		}
+
+		if (Assets.exists(sharedPath) && assetPath == null)
+			assetPath = sharedPath;
+		else
+		{
+			if (assetPath == null)
+				trace('No shared prop asset path: $localPath');
+		}
+
+		return assetPath;
+	}
 }

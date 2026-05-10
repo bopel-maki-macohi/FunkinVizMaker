@@ -4,4 +4,5 @@ typedef VisualizerRawAnimationData =
 {
 	name:String,
 	?prefix:String,
+	?altAsset:String,
 }

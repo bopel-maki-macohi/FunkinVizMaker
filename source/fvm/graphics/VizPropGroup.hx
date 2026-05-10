@@ -30,37 +30,13 @@ class VizPropGroup extends FlxTypedSpriteGroup<VizProp>
 
 		for (prop in props)
 		{
-			var assetPath:String = null;
-
-			if (prop.asset != null)
-			{
-				final localPath = songID.getSongVizualizerPath('props/${prop.asset}'.imageFile());
-				final sharedPath = prop.asset.getSharedPath().imageFile();
-
-				if (Assets.exists(localPath) && assetPath == null)
-					assetPath = localPath;
-				else
-				{
-					if (assetPath == null)
-						trace('No local prop asset path: $localPath');
-				}
-
-				if (Assets.exists(sharedPath) && assetPath == null)
-					assetPath = sharedPath;
-				else
-				{
-					if (assetPath == null)
-						trace('No shared prop asset path: $localPath');
-				}
-			}
-
-			loadProp(prop, assetPath);
+			loadProp(prop, songID);
 		}
 	}
 
-	public function loadProp(prop:VisualizerRawPropData, ?assetPath:String)
+	public function loadProp(prop:VisualizerRawPropData, ?songID:String)
 	{
-		var sprite:VizProp = new VizProp(prop, assetPath);
+		var sprite:VizProp = new VizProp(prop, songID);
 
 		if (sprite.loaded)
 			add(sprite);

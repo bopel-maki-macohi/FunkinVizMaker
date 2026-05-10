@@ -29,8 +29,14 @@
                 {
                     "name": "idle",
                     "prefix": "BF idle dance instance"
+                },
+                {
+                    "name": "hey!!",
+                    "prefix": "BF HEY!! instance 1",
+                    "altAsset": "bf-hey"
                 }
-            ]
+            ],
+            "bopAnim": "hey!!"
         }
     ]
 }

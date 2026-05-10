@@ -1,5 +1,7 @@
 package fvm.graphics;
 
+import flixel.graphics.frames.FlxAtlasFrames;
+import animate.FlxAnimateFrames;
 import fvm.data.visualizer.VisualizerPropBopType;
 import haxe.io.Path;
 import fvm.data.visualizer.VisualizerRawPropData;
@@ -8,14 +10,14 @@ class VizProp extends VizSprite
 {
 	public var data:VisualizerRawPropData;
 
-	public var assetPath:String;
+	public var songID:String;
 
-	override public function new(data:VisualizerRawPropData, ?assetPath:String)
+	override public function new(data:VisualizerRawPropData, ?songID:String)
 	{
 		super();
 
 		this.data = data;
-		this.assetPath = assetPath;
+		this.songID = songID;
 
 		parseData();
 	}
@@ -34,26 +36,47 @@ class VizProp extends VizSprite
 		if (data == null)
 			return;
 
-		if (assetPath == null)
-			return;
-
 		this.bopType = beat;
 		if (data.bopType != null)
 			this.bopType = data.bopType;
 
+		var assetPath:String = data.asset.imageFile().getPropAsset(songID);
+
 		switch (data.type)
 		{
 			case still:
+				if (assetPath == null)
+					return;
+
 				this.bopType = none;
 
 				loadGraphic(assetPath);
 				loaded = true;
 
 			case bopperSparrow:
+				if (assetPath == null)
+					return;
+
 				if (data.anims == null)
 					return;
 
-				frames = Path.withoutExtension(assetPath).getSparrowAtlas();
+				var frameList:Array<FlxAtlasFrames> = [Path.withoutExtension(assetPath).getSparrowAtlas()];
+
+				for (anim in data.anims)
+				{
+					if (anim.altAsset != null)
+					{
+						var altAssetPath:String = anim.altAsset.imageFile().getPropAsset(songID);
+						var altAtlas = Path.withoutExtension(altAssetPath).getSparrowAtlas();
+
+						if (altAtlas == null)
+							return;
+
+						frameList.push(altAtlas);
+					}
+				}
+
+				frames = FlxAnimateFrames.combineAtlas(frameList);
 
 				for (anim in data.anims)
 				{
@@ -106,7 +129,7 @@ class VizProp extends VizSprite
 			x += data?.position[0] ?? 0;
 			y += data?.position[1] ?? 0;
 		}
-		
+
 		if (data.scale != null)
 		{
 			scale.x = data?.scale[0] ?? 1;
