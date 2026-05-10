@@ -81,8 +81,6 @@ class PlayState extends ConductorState
 		camGame.focusOn(camFollow.getPosition());
 
 		refresh();
-
-		throw 'Fuck u';
 	}
 
 	/**
