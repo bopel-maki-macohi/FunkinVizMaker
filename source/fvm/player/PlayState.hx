@@ -30,6 +30,20 @@ class PlayState extends ConductorState
 		conductor.setBPM(songVisualizerData.bpm);
 	}
 
+	override function onFocusLost()
+	{
+		super.onFocusLost();
+
+		audioFiles.pause();
+	}
+
+	override function onFocus()
+	{
+		super.onFocus();
+
+		audioFiles.resume();
+	}
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
