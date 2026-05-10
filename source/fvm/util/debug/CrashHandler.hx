@@ -1,92 +1,140 @@
 package fvm.util.debug;
 
 import lime.app.Application;
-import sys.io.File;
-import haxe.CallStack;
-import sys.FileSystem;
-import flixel.input.keyboard.FlxKey;
 import flixel.FlxG;
 import openfl.events.UncaughtErrorEvent;
 import openfl.Lib;
 
-using StringTools;
-
 class CrashHandler
 {
+	public static final CRASH_DIRECTORY:String = 'crash';
+
 	public static function init()
 	{
-		if (FlxG.signals.postUpdate.has(errorKeybind)) return;
+		#if sys
+		if (!sys.FileSystem.exists(CRASH_DIRECTORY))
+		{
+			trace('Created CRASH_DIRECTORY: ${CRASH_DIRECTORY}');
+			sys.FileSystem.createDirectory(CRASH_DIRECTORY);
+		}
+		#end
 
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
 
-		FlxG.signals.postUpdate.add(errorKeybind);
-
-		trace('Init crash handler');
+		FlxG.signals.preUpdate.add(function()
+		{
+			if (FlxG.keys.justPressed.F1) throw 'F1 Crash';
+		});
 	}
-
-	public static var CRASH_KEY:FlxKey = F1;
-
-	static function errorKeybind()
-	{
-		if (FlxG.keys.anyJustPressed([CRASH_KEY])) throw 'Crash via ${CRASH_KEY.toString()}';
-	}
-
-	public static var CRASH_DIRECTORY:String =
-		#if debug
-		'../../../../dump/crash';
-		#else
-		'crash';
-		#end
 
 	static function onUncaughtError(event:UncaughtErrorEvent)
 	{
-		var path:String = '$CRASH_DIRECTORY/Crash Log ${DateUtil.generateCurrentFileTimestamp()}.log';
-		final spacing:String = '--------------------------------\n';
+		final baseErrorMessage:String = 'UNCAUGHT ERROR EVENT: "${event.error}"';
+		final callStack:Array<haxe.CallStack.StackItem> = haxe.CallStack.exceptionStack(true);
 
-		if (!FileSystem.exists(CRASH_DIRECTORY)) FileSystem.createDirectory(CRASH_DIRECTORY);
+		var errorMessage:String = '$baseErrorMessage\n';
 
-		var UE:String = '';
-
-		try
+		for (stackItem in callStack)
 		{
-			UE = 'Uncaught Error: ${Std.string(event?.error) ?? 'Unknown'}';
+			switch (stackItem)
+			{
+				case FilePos(innerStackItem, file, line, column):
+					// unhelpful files
+					if ([
+						'lime/_internal/macros/EventMacro.hx',
+						'openfl/display/Preloader.hx',
+						'lime/utils/Preloader.hx',
+						'lime/app/Module.hx',
+						'lime/app/Promise.hx',
+						'lime/app/Future.hx',
+						'lime/utils/Assets.hx',
+						'ApplicationMain.hx',
+						'openfl/events/EventDispatcher.hx',
+						'openfl/display/DisplayObject.hx',
+						'openfl/display/DisplayObjectContainer.hx',
+						'lime/net/HTTPRequest.hx',
+						'lime/_internal/backend/native/NativeHTTPRequest.hx',
+						'lime/system/ThreadPool.hx',
+						'lime/_internal/backend/native/NativeApplication.hx',
+						'lime/app/Application.hx',
+						'openfl/display/Application.hx',
+					].contains(file)) continue;
+
+					errorMessage += '   in ${file}#${line}';
+					if (column != null) errorMessage += ':${column}';
+				case CFunction:
+					errorMessage += '[Function] ';
+				case Module(m):
+					errorMessage += '[Module(${m})] ';
+				case Method(classname, method):
+					errorMessage += '[Function(${classname}.${method})] ';
+				case LocalFunction(v):
+					errorMessage += '[LocalFunction(${v})] ';
+			}
+			errorMessage += '\n';
 		}
-		catch (e)
+
+		var currentState:String = 'No state loaded';
+		if (FlxG.game != null && FlxG.state != null)
 		{
-			UE = 'Uncaught Error: Unknown ($e)';
+			var currentStateCls:Null<Class<Dynamic>> = Type.getClass(FlxG.state);
+			if (currentStateCls != null) currentState = Type.getClassName(currentStateCls) ?? 'No state loaded';
 		}
 
-		var errorMessage:String = '$UE\n\n';
+		final filename:String = '$CRASH_DIRECTORY/${DateUtil.generateCurrentFileTimestamp()}.txt';
 
-		errorMessage += 'Exception Stack:\n';
-		errorMessage += StackItemListParser.parse(CallStack.exceptionStack(true));
+		errorMessage += '\nGame Version: ${Application.current.meta.get('version')}';
 
-		// errorMessage += '\nCall Stack:\n';
-		// errorMessage += StackItemListParser.parse(CallStack.callStack());
+		errorMessage += '\nCurrent State: ${currentState}';
 
-		errorMessage += '\n$spacing\n';
+		var stateFields:Array<String> = [];
 
-		errorMessage += 'Version: ${Application.current.meta.get('version')}\n\n';
-
-		if (FlxG?.state != null)
+		switch (currentState) {}
+		
+		if (stateFields.length > 0)
 		{
-			errorMessage += 'Current State: ${Type.getClassName(Type.getClass(FlxG?.state))?.replace('.', '/') + '.hx' ?? 'None (how tf)'}\n';
-			if (FlxG?.state?.subState != null)
-				errorMessage += ' - Current Substate: ${Type.getClassName(Type.getClass(FlxG?.state?.subState))?.replace('.', '/') + '.hx' ?? 'None'}\n';
+			for (field in stateFields)
+				try
+				{
+					errorMessage += '\n    $field : ${Std.string(Reflect?.field(FlxG.state, field)) ?? 'Unreceivable'}';
+				}
+				catch (e)
+				{
+					errorMessage += '\n    $field : Unreceivable($e)';
+				}
+		}
+		else
+		{
+			errorMessage += '\n    No Special Fields';
 		}
 
-		errorMessage += '\n$spacing\n';
+		errorMessage += '\n';
+		#if sys
+		errorMessage += '\nCrash log saved to: "$filename"';
+		#end
+		errorMessage += '\nPlease report the crash to the github: https://github.com/bopel-maki-macohi/osinsSideAdventure/issues';
 
-		errorMessage += 'Crash log saved to "$path"\n';
-		errorMessage += 'Please report to the github: https://github.com/bopel-maki-macohi/Fu-kit/issues';
+		log(errorMessage);
 
-		File.saveContent(path, errorMessage);
-		Application.current.window.alert(errorMessage, UE);
+		#if sys
+		sys.io.File.saveContent(filename, errorMessage);
+		#end
 
-		Sys.println(errorMessage);
+		FlxG.stage.application.window.alert(errorMessage, baseErrorMessage);
 
-		Sys.sleep(2);
+		#if sys
+		Sys.sleep(1);
+		#end
 
-		Sys.exit(0);
+		FlxG.stage.application.window.close();
+	}
+
+	static function log(message:Dynamic)
+	{
+		#if sys
+		Sys.println('[CRASHHANDLER] $message');
+		#else
+		trace('[CRASHHANDLER] $message');
+		#end
 	}
 }
