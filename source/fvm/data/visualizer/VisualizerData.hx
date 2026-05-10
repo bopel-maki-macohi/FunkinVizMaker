@@ -7,7 +7,7 @@ class VisualizerData extends DataClass<VisualizerRawData>
 {
 	public function new(songID:String)
 	{
-		var path:String = 'assets/visualizers/$songID/visualizer.json';
+		var path:String = songID.getSongVizualizerPath('visualizer'.jsonFile());
 
 		if (!Assets.exists(path))
 			throw 'Missing Visualizer Path: $path';
