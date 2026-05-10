@@ -1,11 +1,14 @@
+--library lime
+--library openfl
 --library flixel
 --library flixel-animate
 --library hxp
 
--C source
 -D doc-gen
 
 -D FLX_NO_DEBUG
+-D FLX_STANDARD_ASSETS_DIRECTORY
+-D FLX_SOUND_SYSTEM
 
 --macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxBasic())', 'flixel.FlxBasic')
 --macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedGroup')
@@ -15,6 +18,7 @@
 # --macro include('flixel')
 --macro include('fvm')
 
+--no-output
 --each
 
 --next
