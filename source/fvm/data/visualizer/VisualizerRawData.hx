@@ -10,5 +10,7 @@ typedef VisualizerRawData =
 
 	bpm:Float,
 
+	stage:VisualizerRawStageData,
+
 	props:Array<VisualizerRawPropData>,
 }

@@ -1,5 +1,7 @@
 package fvm.player;
 
+import flixel.FlxG;
+import flixel.FlxCamera;
 import fvm.graphics.VizPropGroup;
 import haxe.io.Path;
 import lime.utils.Assets;
@@ -21,9 +23,14 @@ class PlayState extends ConductorState
 
 	public var props:VizPropGroup;
 
+	public var camGame:FlxCamera;
+
 	override function create()
 	{
 		super.create();
+
+		camGame = new FlxCamera();
+		FlxG.cameras.add(camGame);
 
 		songVisualizerData = new VisualizerData(songID);
 
@@ -40,6 +47,8 @@ class PlayState extends ConductorState
 		add(props);
 
 		props.loadProps(songID, songVisualizerData.props);
+
+		camGame.zoom = songVisualizerData.stage.zoom;
 
 		refresh();
 	}

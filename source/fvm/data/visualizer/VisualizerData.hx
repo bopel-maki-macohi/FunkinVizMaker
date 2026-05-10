@@ -50,6 +50,14 @@ class VisualizerData extends DataClass<VisualizerRawData>
 	function set_bpm(bpm:Float):Float
 		return data.bpm = bpm;
 
+	public var stage(get, set):VisualizerRawStageData;
+
+	function get_stage():VisualizerRawStageData
+		return data.stage;
+
+	function set_stage(stage:VisualizerRawStageData):VisualizerRawStageData
+		return data.stage = stage;
+
 	public var props(get, set):Array<VisualizerRawPropData>;
 
 	function get_props():Array<VisualizerRawPropData>
