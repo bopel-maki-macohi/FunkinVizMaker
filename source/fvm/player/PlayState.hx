@@ -1,22 +1,18 @@
 package fvm.player;
 
+import fvm.audio.ConductorState;
 import fvm.audio.Conductor;
 import fvm.audio.AudioGroup;
 import flixel.sound.FlxSound;
 import fvm.data.visualizer.VisualizerData;
 import flixel.FlxState;
 
-class PlayState extends FlxState
+class PlayState extends ConductorState
 {
 	public var songID:String = 'test';
 	public var songVisualizerData:VisualizerData;
 
 	public var audioFiles:AudioGroup;
-
-	public var conductor(get, never):Conductor;
-
-	function get_conductor():Conductor
-		return Conductor.instance;
 
 	override function create()
 	{
@@ -32,11 +28,6 @@ class PlayState extends FlxState
 		audioFiles.play();
 
 		conductor.setBPM(songVisualizerData.bpm);
-
-		conductor.beatHit.add(beat ->
-		{
-			trace('beat');
-		});
 	}
 
 	override function update(elapsed:Float)
@@ -45,5 +36,12 @@ class PlayState extends FlxState
 
 		conductor.songPosition += elapsed * 1000;
 		conductor.update();
+	}
+
+	override function beatHit(beat:Int)
+	{
+		super.beatHit(beat);
+
+		trace('beat: $beat');
 	}
 }
