@@ -41,4 +41,12 @@ class VisualizerData extends DataClass<VisualizerRawData>
 
 	function set_audioFiles(audioFiles:Array<String>):Array<String>
 		return data.audioFiles = audioFiles;
+
+	public var bpm(get, set):Float;
+
+	function get_bpm():Float
+		return data.bpm;
+
+	function set_bpm(bpm:Float):Float
+		return data.bpm = bpm;
 }

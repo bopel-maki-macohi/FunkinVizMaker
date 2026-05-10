@@ -3,5 +3,7 @@
         "Inst",
         "Voices-bf-pixel",
         "Voices-bf"
-    ]    
+    ],
+
+    "bpm": 150.0
 }

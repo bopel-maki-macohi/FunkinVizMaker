@@ -7,4 +7,6 @@ typedef VisualizerRawData =
 	 * `assets/shared/songs/{songID}.ogg` or `assets/visualizers/${songID}/song.ogg`
 	 */
 	audioFiles:Array<String>,
+
+	bpm:Float,
 }
