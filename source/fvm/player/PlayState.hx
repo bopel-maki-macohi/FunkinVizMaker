@@ -77,7 +77,7 @@ class PlayState extends ConductorState
 			eventTimers.push(timer);
 		}
 
-		camGame.follow(camFollow, LOCKON, visualizer?.stage?.camSpeed ?? 0.4);
+		camGame.follow(camFollow, LOCKON, visualizer?.stage?.camSpeed ?? 0.04);
 		camGame.focusOn(camFollow.getPosition());
 
 		refresh();
