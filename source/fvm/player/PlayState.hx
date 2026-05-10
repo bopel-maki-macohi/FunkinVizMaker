@@ -72,8 +72,7 @@ class PlayState extends ConductorState
 			var timer = new FlxTimer();
 			timer.start(event.time / 1000, t ->
 			{
-				trace(event);
-
+				// trace(event);
 				parseEvent(event.event);
 
 				eventTimers.remove(t);
