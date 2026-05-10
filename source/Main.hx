@@ -1,5 +1,6 @@
 package;
 
+import fvm.util.macro.DefineMacro;
 import flixel.FlxGame;
 import openfl.display.Sprite;
 
@@ -9,10 +10,9 @@ class Main extends Sprite
 	{
 		super();
 
-		for (arg in Sys.args())
-		{
-			trace(arg);
-		}
+		final defines = DefineMacro.getDefines();
+		for (define in defines)
+			trace(define);
 
 		addChild(new FlxGame(0, 0, InitState));
 	}
