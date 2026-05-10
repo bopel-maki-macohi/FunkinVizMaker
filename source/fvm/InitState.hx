@@ -59,7 +59,7 @@ class InitState extends FlxState
 	{
 		if (DefineMacro.isDefined('HSCRIPT_TESTING'))
 		{
-			var scriptTeser:Script = new Script('assets/testScript.hx');
+			var scriptTeser:Script = new Script('assets/TestScript.hx');
 		}
 
 		FlxG.switchState(() -> new PlayState());
