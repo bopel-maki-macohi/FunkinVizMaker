@@ -24,9 +24,5 @@ class AudioGroup extends FlxSoundGroup
 			sound.play(forceRestart, startTime);
 	}
 
-	public function update(elapsed:Float)
-	{
-		for (i => sound in sounds)
-			FlxG.watch.addQuick('sound$i.time', sound.time / 1000);
-	}
+	public function update(elapsed:Float) {}
 }
