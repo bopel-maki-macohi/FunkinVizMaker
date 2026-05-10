@@ -1,5 +1,6 @@
 package fvm.util.macro;
 
+import haxe.macro.Expr;
 import haxe.macro.Context;
 
 class DefineMacro
