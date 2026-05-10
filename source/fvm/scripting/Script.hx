@@ -89,10 +89,7 @@ class Script
 	 * Checks the existance of a field or method within your script.
 	 * @param field 		The field to check if exists.
 	 */
-	public function exists(field:String):Bool
-	{
-		return (interp != null) ? interp.variables.exists(field) : false;
-	}
+	public function exists(field:String):Bool return (interp != null) ? interp.variables.exists(field) : false;
 
 	/**
 	 * Destroys the current instance of this script
