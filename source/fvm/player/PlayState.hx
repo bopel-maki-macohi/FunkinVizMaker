@@ -136,17 +136,6 @@ class PlayState extends ConductorState
 	public function parseEvent(event:VisualizerRawEventEventData)
 	{
 		call('onEvent', [EventManager.get(VisualizerEventCallEvent).recycle(event.id, event.value)]);
-
-		switch (event.id)
-		{
-			case 'cameraFocus':
-				if (props.propExists(event.value))
-				{
-					var prop = props.getProp(event.value);
-
-					camFollow.setPosition(prop.getGraphicMidpoint().x, prop.getGraphicMidpoint().y);
-				}
-		}
 	}
 
 	override function call(fn:String, ?args:Array<Dynamic>)
