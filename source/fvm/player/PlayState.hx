@@ -139,8 +139,6 @@ class PlayState extends ConductorState
 
 	override function call(fn:String, ?args:Array<Dynamic>)
 	{
-		super.call(fn, args);
-
 		ScriptUtil.call([localScriptPack], fn, args);
 	}
 }

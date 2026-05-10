@@ -24,10 +24,7 @@ class CancellableEvent implements IFlxDestroyable
 	}
 
 	@:dox(hide)
-	public function cancel(c:Bool = true)
-	{
-		preventDefault(c);
-	}
+	public function cancel(c:Bool = true) preventDefault(c);
 
 	public function new() {}
 

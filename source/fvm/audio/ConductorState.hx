@@ -1,5 +1,6 @@
 package fvm.audio;
 
+import fvm.util.ScriptUtil;
 import fvm.scripting.events.CancellableEvent;
 import fvm.util.Core;
 import flixel.FlxState;
@@ -30,6 +31,7 @@ class ConductorState extends FlxState
 
 	public function stepHit(step:Int) {}
 
-	public function call(fn:String, ?args:Array<Dynamic>) Core.call(fn, args);
+	public function call(fn:String, ?args:Array<Dynamic>) ScriptUtil.call([], fn, args);
+
 	public function callEvent<T:CancellableEvent>(fn:String, event:T) call(fn, [event]);
 }

@@ -1,5 +1,6 @@
 package fvm.scripting;
 
+import fvm.scripting.events.CancellableEvent;
 import fvm.util.FileUtil;
 import lime.utils.Assets;
 
@@ -31,7 +32,28 @@ class ScriptPack
 
 	public function removeIndex(i:Int) remove(scripts[i]);
 
-	public function call(fn:String, ?args:Array<Dynamic>) for (script in scripts) script.call(fn, args);
+	public function call(fn:String, ?args:Array<Dynamic>)
+	{
+		var proceed:Bool = true;
+
+		for (script in scripts)
+		{
+			for (arg in args)
+			{
+				if (Std.isOfType(arg, CancellableEvent))
+				{
+					var event = cast(arg, CancellableEvent);
+					if (event.cancelled && !event.__continueCalls)
+					{
+						proceed = false;
+						trace(event);
+					}
+				}
+			}
+
+			if (proceed) script.call(fn, args);
+		}
+	}
 
 	public function set(vr:String, values:Dynamic) for (script in scripts) script.set(vr, values);
 
