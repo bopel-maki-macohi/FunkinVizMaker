@@ -2,5 +2,7 @@ package fvm.data.visualizer;
 
 typedef VisualizerRawStageData =
 {
-	zoom:Float,
+	?zoom:Float,
+	
+	?camSpeed:Float,
 }

@@ -60,7 +60,7 @@ class PlayState extends ConductorState
 
 		props.loadProps(songID, songVisualizerData.props);
 
-		camGame.zoom = songVisualizerData.stage.zoom;
+		camGame.zoom = songVisualizerData?.stage?.zoom ?? 1.0;
 
 		for (event in songVisualizerData.events)
 		{
@@ -77,7 +77,7 @@ class PlayState extends ConductorState
 			eventTimers.push(timer);
 		}
 
-		camGame.follow(camFollow);
+		camGame.follow(camFollow, LOCKON, songVisualizerData?.stage?.camSpeed ?? 0.4);
 		camGame.focusOn(camFollow.getPosition());
 
 		refresh();
