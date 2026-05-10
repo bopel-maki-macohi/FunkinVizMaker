@@ -19,15 +19,19 @@ class VizProp extends VizSprite
 		parseData();
 	}
 
+	public var loaded:Bool = false;
+
 	public function parseData()
 	{
 		if (assetPath == null)
 			return;
 
-		switch data.type
+		switch (data.type)
 		{
 			case still:
 				loadGraphic(assetPath);
+				loaded = true;
+
 			case bopperSparrow:
 				if (data.anims == null)
 					return;
@@ -36,12 +40,22 @@ class VizProp extends VizSprite
 
 				for (anim in data.anims)
 				{
+					if (anim.name == null)
+						continue;
+					if (anim.prefix == null)
+						continue;
+
 					animation.addByPrefix(anim.name, anim.prefix, 24, false);
 					animation.play(anim.name);
 				}
 
-				if (data.defaultAnim != null)
-					animation.play(data.defaultAnim);
+				if (animation.getNameList().length == 0)
+					return;
+
+				if (data.bopAnim != null)
+					animation.play(data.bopAnim);
+
+				loaded = true;
 		}
 	}
 }

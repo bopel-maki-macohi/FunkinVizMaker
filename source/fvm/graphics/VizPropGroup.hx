@@ -1,4 +1,4 @@
-package fvm.player;
+package fvm.graphics;
 
 import fvm.graphics.VizProp;
 import haxe.io.Path;
@@ -7,7 +7,7 @@ import fvm.data.visualizer.VisualizerRawPropData;
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 
-class PropGroup extends FlxTypedSpriteGroup<VizProp>
+class VizPropGroup extends FlxTypedSpriteGroup<VizProp>
 {
 	public function loadProps(songID:String, props:Array<VisualizerRawPropData>)
 	{
@@ -62,6 +62,9 @@ class PropGroup extends FlxTypedSpriteGroup<VizProp>
 	{
 		var sprite:VizProp = new VizProp(prop, assetPath);
 
-		add(sprite);
+		if (sprite.loaded)
+			add(sprite);
+		else
+			sprite.destroy();
 	}
 }

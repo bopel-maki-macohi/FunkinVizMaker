@@ -1,5 +1,6 @@
 package fvm.player;
 
+import fvm.graphics.VizPropGroup;
 import haxe.io.Path;
 import lime.utils.Assets;
 import flixel.FlxSprite;
@@ -18,7 +19,7 @@ class PlayState extends ConductorState
 
 	public var audioFiles:AudioGroup;
 
-	public var props:PropGroup;
+	public var props:VizPropGroup;
 
 	override function create()
 	{
@@ -35,7 +36,7 @@ class PlayState extends ConductorState
 
 		conductor.setBPM(songVisualizerData.bpm);
 
-		props = new PropGroup();
+		props = new VizPropGroup();
 		add(props);
 	}
 
