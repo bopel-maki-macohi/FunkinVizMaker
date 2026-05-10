@@ -1,1 +1,3 @@
-package assets.core.events;
+function onEvent() {
+    
+}
