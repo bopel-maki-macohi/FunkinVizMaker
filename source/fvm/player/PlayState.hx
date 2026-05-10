@@ -18,7 +18,7 @@ class PlayState extends ConductorState
 
 	public var audioFiles:AudioGroup;
 
-	public var props:FlxSpriteGroup;
+	public var props:PropGroup;
 
 	override function create()
 	{
@@ -35,65 +35,8 @@ class PlayState extends ConductorState
 
 		conductor.setBPM(songVisualizerData.bpm);
 
-		props = new FlxSpriteGroup();
+		props = new PropGroup();
 		add(props);
-
-		for (prop in songVisualizerData.props)
-		{
-			var assetPath:String = null;
-
-			if (prop.asset == null)
-				continue;
-
-			final localPath = songID.getSongVizualizerPath('props/${prop.asset}'.imageFile());
-			final sharedPath = prop.asset.getSharedPath().imageFile();
-
-			if (Assets.exists(localPath) && assetPath == null)
-				assetPath = localPath;
-			else
-			{
-				if (assetPath == null)
-					trace('No local prop asset path: $localPath');
-			}
-
-			if (Assets.exists(sharedPath) && assetPath == null)
-				assetPath = sharedPath;
-			else
-			{
-				if (assetPath == null)
-					trace('No shared prop asset path: $localPath');
-			}
-
-			if (assetPath == null)
-				continue;
-
-			switch (prop.type)
-			{
-				case bopperSparrow:
-					if (prop.anims == null)
-						continue;
-
-					var sparrowBopper = new FlxSprite();
-					sparrowBopper.frames = Path.withoutExtension(assetPath).getSparrowAtlas();
-
-					for (anim in prop.anims)
-					{
-						sparrowBopper.animation.addByPrefix(anim.name, anim.prefix, 24, false);
-						sparrowBopper.animation.play(anim.name);
-					}
-
-					if (prop.defaultAnim != null)
-						sparrowBopper.animation.play(prop.defaultAnim);
-
-					sparrowBopper.screenCenter();
-					props.add(sparrowBopper);
-
-				case still:
-					var staticSprite = new FlxSprite(0, 0, assetPath);
-					staticSprite.screenCenter();
-					props.add(staticSprite);
-			}
-		}
 	}
 
 	/**
