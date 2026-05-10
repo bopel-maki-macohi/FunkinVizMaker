@@ -52,6 +52,8 @@ class VizProp extends VizSprite
 
 		if (data.id != null) this.id = data.id;
 		scriptPack = new ScriptPack(id);
+		scriptPack.load('core');
+		trace(scriptPack.scripts);
 
 		var assetPath:String = data.asset.imageFile().getPropAsset(id, songID);
 
@@ -105,8 +107,6 @@ class VizProp extends VizSprite
 				dance();
 
 				loaded = true;
-
-			default:
 		}
 
 		if (loaded) parseGeneralData();
@@ -122,9 +122,11 @@ class VizProp extends VizSprite
 			{
 				switch (tag.toLowerCase())
 				{
-					case 'center', 'screencenter':
-						screenCenter();
+					// case 'center', 'screencenter':
+					// screenCenter();
 				}
+
+				ScriptUtil.callEvent([scriptPack], 'parsePropTag', EventManager.get(VisualizerPropParseTagEvent).recycle(this, tag));
 			}
 		}
 
@@ -168,5 +170,6 @@ class VizProp extends VizSprite
 		if (!animated) return;
 
 		animation.play(bopAnim);
+		ScriptUtil.callEvent([scriptPack], 'dance', EventManager.get(VisualizerPropEvent).recycle(this));
 	}
 }

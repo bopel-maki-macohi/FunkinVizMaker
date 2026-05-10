@@ -1,5 +1,6 @@
 package fvm.util;
 
+import sys.FileSystem;
 import lime.utils.Assets;
 import flixel.graphics.frames.FlxAtlasFrames;
 
@@ -49,7 +50,7 @@ class PathUtil
 			log = log.replace('NPAP', 'No Prop Asset Path');
 			#end
 
-			if (Assets.exists(path) && assetPath == null) assetPath = path;
+			if (FileSystem.exists(path) && assetPath == null) assetPath = path;
 			else if (assetPath == null) trace(log);
 		}
 
