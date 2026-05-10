@@ -1,5 +1,7 @@
 package fvm;
 
+import fvm.scripting.Script;
+import fvm.util.macro.DefineMacro;
 import sys.thread.Thread;
 import lime.app.Application;
 import flixel.FlxSprite;
@@ -27,7 +29,7 @@ class InitState extends FlxState
 
 		Thread.create(genDocs);
 
-		FlxG.switchState(() -> new PlayState());
+		switchState();
 	}
 
 	public function initInstances()
@@ -51,5 +53,15 @@ class InitState extends FlxState
 		Sys.command('..\\..\\..\\..\\docs\\docs-windows');
 		Sys.command('..\\..\\..\\..\\docs\\pages\\index.html');
 		#end
+	}
+
+	public function switchState()
+	{
+		if (DefineMacro.isDefined('HSCRIPT_TESTING'))
+		{
+			var scriptTeser:Script = new Script('assets/testScript.hx');
+		}
+
+		FlxG.switchState(() -> new PlayState());
 	}
 }

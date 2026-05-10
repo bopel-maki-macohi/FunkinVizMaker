@@ -32,6 +32,8 @@
 	<haxelib name="flixel" />
 	<haxelib name="flixel-animate" />
 
+	<haxelib name="hscript-improved" />
+
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<haxeflag name="--macro"
@@ -53,6 +55,9 @@
 		<define name="doc-gen" />
 		<define name="DOCUMENTATION" />
 	</section>
+
+	<define name="CUSTOM_CLASSES" />
+	<define name="hscriptPos" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
