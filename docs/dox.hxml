@@ -11,8 +11,8 @@
 --macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedGroup')
 --macro addMetadata('@:build(fvm.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedSpriteGroup')
 
---macro include('flixel-animate')
---macro include('flixel')
+# --macro include('flixel-animate')
+# --macro include('flixel')
 --macro include('fvm')
 
 --each
