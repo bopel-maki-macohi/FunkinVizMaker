@@ -13,10 +13,8 @@ class VizPropGroup extends FlxTypedSpriteGroup<VizProp>
 {
 	public function loadProps(songID:String, props:Array<VisualizerRawPropData>)
 	{
-		if (songID == null)
-			songID = '';
-		if (props == null)
-			return;
+		if (songID == null) songID = '';
+		if (props == null) return;
 
 		if (members.length > 0)
 		{
@@ -53,11 +51,9 @@ class VizPropGroup extends FlxTypedSpriteGroup<VizProp>
 	{
 		for (prop in members)
 		{
-			if (prop.bopType == beat)
-				prop.dance();
+			if (prop.bopType == beat) prop.dance();
 
-			if (prop.bopType == otherbeat && curBeat % 2 == 0)
-				prop.dance();
+			if (prop.bopType == otherbeat && curBeat % 2 == 0) prop.dance();
 		}
 	}
 
@@ -65,11 +61,21 @@ class VizPropGroup extends FlxTypedSpriteGroup<VizProp>
 	{
 		for (prop in members)
 		{
-			if (prop.bopType == step)
-				prop.dance();
+			if (prop.bopType == step) prop.dance();
 
-			if (prop.bopType == otherstep && curStep % 2 == 0)
-				prop.dance();
+			if (prop.bopType == otherstep && curStep % 2 == 0) prop.dance();
 		}
+	}
+
+	public function propExists(propID:String):Bool
+	{
+		return members.filter(prop -> return prop.id == propID).length > 0;
+	}
+
+	public function getProp(propID:String):VizProp
+	{
+		if (!propExists(propID)) return null;
+
+		return members.filter(prop -> return prop.id == propID)[0];
 	}
 }

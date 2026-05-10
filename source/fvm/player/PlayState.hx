@@ -1,5 +1,9 @@
 package fvm.player;
 
+import flixel.FlxObject;
+import fvm.data.visualizer.VisualizerRawEventEventData;
+import fvm.data.visualizer.VisualizerRawEventData;
+import flixel.util.FlxTimer;
 import flixel.FlxG;
 import flixel.FlxCamera;
 import fvm.graphics.VizPropGroup;
@@ -24,6 +28,9 @@ class PlayState extends ConductorState
 	public var props:VizPropGroup;
 
 	public var camGame:FlxCamera;
+	public var camFollow:FlxObject;
+
+	public var eventTimers:Array<FlxTimer> = [];
 
 	override function create()
 	{
@@ -31,6 +38,11 @@ class PlayState extends ConductorState
 
 		camGame = new FlxCamera();
 		FlxG.cameras.add(camGame);
+
+		camFollow = new FlxObject();
+		add(camFollow);
+
+		camFollow.screenCenter();
 
 		songVisualizerData = new VisualizerData(songID);
 
@@ -49,6 +61,24 @@ class PlayState extends ConductorState
 		props.loadProps(songID, songVisualizerData.props);
 
 		camGame.zoom = songVisualizerData.stage.zoom;
+
+		for (event in songVisualizerData.events)
+		{
+			var timer = new FlxTimer();
+			timer.start(event.time / 1000, t ->
+			{
+				trace(event);
+
+				parseEvent(event.event);
+
+				eventTimers.remove(t);
+			});
+
+			eventTimers.push(timer);
+		}
+
+		camGame.follow(camFollow);
+		camGame.focusOn(camFollow.getPosition());
 
 		refresh();
 	}
@@ -96,5 +126,19 @@ class PlayState extends ConductorState
 		audioFiles.resyncCheck();
 
 		props.onStepHit(step);
+	}
+
+	public function parseEvent(event:VisualizerRawEventEventData)
+	{
+		switch (event.id)
+		{
+			case 'cameraFocus':
+				if (props.propExists(event.value))
+				{
+					var prop = props.getProp(event.value);
+
+					camFollow.setPosition(prop.getGraphicMidpoint().x, prop.getGraphicMidpoint().y);
+				}
+		}
 	}
 }
