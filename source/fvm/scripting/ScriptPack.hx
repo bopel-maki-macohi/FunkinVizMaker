@@ -23,7 +23,11 @@ class ScriptPack
 
 		for (s in FileUtil.readDirectoryRecursive(path))
 		{
-			if (s.endsWith(''.scriptFile())) add(new Script(s));
+			if (s.endsWith(''.scriptFile()))
+			{
+				// trace(s);
+				add(new Script(s));
+			}
 		}
 	}
 
@@ -52,7 +56,11 @@ class ScriptPack
 				}
 			}
 
-			if (proceed) script.call(fn, args);
+			if (proceed)
+			{
+				trace('${script.file} $fn');
+				script.call(fn, args);
+			}
 		}
 	}
 

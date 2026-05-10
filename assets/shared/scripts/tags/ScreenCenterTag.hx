@@ -1,7 +1,7 @@
-function parsePropTag(prop, tag)
+function parsePropTag(e)
 {
-	trace(tag);
+	trace(e);
 
-	if (tag.toLowerCase() == 'center') prop.screenCenter();
-	if (tag.toLowerCase() == 'screencenter') prop.screenCenter();
+	if (e.tag.toLowerCase() == 'center') e.prop.screenCenter();
+	if (e.tag.toLowerCase() == 'screencenter') e.prop.screenCenter();
 }

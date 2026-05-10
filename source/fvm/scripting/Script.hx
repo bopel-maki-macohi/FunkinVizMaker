@@ -10,8 +10,12 @@ class Script
 	public var interp:Interp;
 	public var parser:Parser;
 
+	public var file:String = '';
+
 	public function new(file:String)
 	{
+		this.file = file;
+
 		interp = new Interp();
 		parser = new Parser();
 
