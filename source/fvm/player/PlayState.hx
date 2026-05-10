@@ -21,8 +21,9 @@ class PlayState extends FlxState
 		audioFiles = new FlxSoundGroup();
 
 		for (file in songVisualizerData.audioFiles)
-		{
 			audioFiles.add(new FlxSound().loadEmbedded('assets/visualizers/$songID/song/$file.ogg'));
-		}
+
+		for (sound in audioFiles.sounds)
+			sound.play();
 	}
 }
