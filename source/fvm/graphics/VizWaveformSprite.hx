@@ -1,5 +1,6 @@
 package fvm.graphics;
 
+import flixel.FlxG;
 import fvm.player.PlayState;
 import flixel.sound.FlxSound;
 import fvm.util.VizPropHelper;
@@ -22,7 +23,7 @@ class VizWaveformSprite extends FlxWaveform implements IVizProp
 
 	override public function new(data:Dynamic, propNum:Int, ?songID:String)
 	{
-		super(0, 0, 120, 120);
+		super(0, 0, FlxG.width, Std.int(FlxG.height / 4));
 
 		this.data = new VisualizerPropData(data);
 
@@ -69,13 +70,16 @@ class VizWaveformSprite extends FlxWaveform implements IVizProp
 			// if (waveformData?.bgColor != null) waveformBgColor = FlxColor.fromString(waveformData.bgColor);
 
 			waveformBarSize = waveformData?.barSize ?? 1;
-			waveformBarPadding = waveformData?.barSizePadding ?? 0;
-
-			waveformDrawRMS = true;
+			waveformBarPadding = waveformData?.barPadding ?? 0;
 
 			color = FlxColor.BLUE;
 			waveformRMSColor = FlxColor.WHITE;
 			if (waveformData?.rmsColor != null) waveformRMSColor = FlxColor.fromString(waveformData.rmsColor);
+
+			waveformDrawRMS = true;
+
+			waveformWidth = waveformData?.width ?? FlxG.width;
+			waveformHeight = waveformData?.height ?? Std.int(FlxG.height / 2);
 
 			loaded = waveformBuffer != null;
 		}

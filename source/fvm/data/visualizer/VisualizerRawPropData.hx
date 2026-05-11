@@ -25,9 +25,6 @@ typedef VisualizerRawPropData =
 
 	?color:String,
 
-	?width:Int,
-	?height:Int,
-
 	?bopAnim:String,
 	?anims:Array<VisualizerRawAnimationData>,
 	?bopType:VisualizerPropBopType,

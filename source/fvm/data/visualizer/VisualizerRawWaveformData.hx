@@ -14,5 +14,8 @@ typedef VisualizerRawWaveformData =
     ?rmsColor:String,
 
 	?barSize:Int,
-	?barSizePadding:Int,
+	?barPadding:Int,
+
+	?width:Int,
+	?height:Int,
 }

@@ -112,12 +112,15 @@
                 1,
                 1
             ],
-            "width": 1280,
+            "scale": [
+                1.5,
+                1.5
+            ],
             "waveform": {
                 "audioFile": "Inst",
-                "visibleDurationSeconds": 0.1,
-                "barSize": 1,
-                "barPadding": 30
+                "visibleDurationSeconds": 1,
+                "barSize": 4,
+                "barPadding": 0
             }
         }
     ],

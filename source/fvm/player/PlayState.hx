@@ -124,7 +124,7 @@ class PlayState extends ConductorState
 		{
 			var waveform = cast(sprite, VizWaveformSprite);
 
-			waveform.waveformTime = FlxMath.lerp(waveform.waveformTime, conductor.songPosition, .04);
+			if (waveform != null) waveform.waveformTime = conductor.songPosition;
 		}
 	}
 
