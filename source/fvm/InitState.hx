@@ -1,5 +1,6 @@
 package fvm;
 
+import fvm.menus.VisualizerSelectMenu;
 import fvm.data.visualizer.VisualizerData;
 import fvm.util.debug.CrashHandler;
 import flixel.util.FlxTimer;
@@ -82,6 +83,6 @@ class InitState extends FlxState
 
 			Sys.exit(0);
 		}
-		else FlxG.switchState(() -> new PlayState());
+		else FlxG.switchState(() -> new VisualizerSelectMenu());
 	}
 }

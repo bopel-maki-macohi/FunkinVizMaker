@@ -1,5 +1,6 @@
 package fvm.player;
 
+import fvm.menus.VisualizerSelectMenu;
 import fvm.util.ScriptUtil;
 import fvm.scripting.events.visualizer.VisualizerEventCallEvent;
 import fvm.scripting.EventManager;
@@ -59,6 +60,7 @@ class PlayState extends ConductorState
 			for (file in visualizer.data?.audioFiles) song.getSongVizualizerPath('song/$file'.audioFile())
 		]);
 		audioFiles.play();
+		audioFiles.sounds[0].onComplete = onSongEnd;
 
 		conductor.setBPM(visualizer.data.bpm);
 
@@ -136,5 +138,10 @@ class PlayState extends ConductorState
 	public function parseEvent(event:VisualizerRawEventEventData)
 	{
 		callEvent('onEvent', EventManager.get(VisualizerEventCallEvent).recycle(event.id, event.value));
+	}
+
+	public function onSongEnd()
+	{
+		FlxG.switchState(() -> new VisualizerSelectMenu());
 	}
 }
