@@ -18,6 +18,8 @@ class VizWaveformSprite extends FlxWaveform implements IVizProp
 
 	public var loaded:Bool = false;
 
+	public var soundID:String = '';
+
 	override public function new(data:Dynamic, propNum:Int, ?songID:String)
 	{
 		super(0, 0, 120, 120);
@@ -50,11 +52,17 @@ class VizWaveformSprite extends FlxWaveform implements IVizProp
 
 			if (PlayState.instance?.visualizer?.data?.audioFiles != null)
 			{
-				if (waveformData.audioFile != null) //
-					loadDataFromFlxSound(new FlxSound() //
-						.loadEmbedded(songID.getSongVizualizerPath('song/${waveformData.audioFile}'.audioFile())));
+				if (waveformData.audioFile != null) soundID = 'song/${waveformData.audioFile}';
 			}
-			else loadDataFromFlxSound(PlayState.instance?.audioFiles?.sounds[0]);
+			else
+			{
+				soundID = PlayState.instance.audioFiles.soundKeys[0];
+				soundID = soundID.split('/')[soundID.split('/').length - 1];
+				
+				loadDataFromFlxSound(PlayState.instance?.audioFiles?.sounds[0]);
+			}
+
+			if (soundID != null) loadDataFromFlxSound(new FlxSound().loadEmbedded(songID.getSongVizualizerPath('$soundID'.audioFile())));
 
 			loaded = waveformBuffer != null;
 		}
