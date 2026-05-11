@@ -77,9 +77,23 @@
         },
         {
             "base": "bf",
+            "baseOptions": {
+                "remove": {
+                    "anims": [
+                        "idle"
+                    ]
+                }
+            },
             "position": [
                 770,
                 450
+            ],
+            "anims": [
+                {
+                    "name": "hey!!",
+                    "prefix": "BF HEY!! instance 1",
+                    "altAsset": "bf-hey"
+                }
             ]
         }
     ],

@@ -6,6 +6,8 @@ typedef VisualizerRawPropData =
 	asset:String,
 
 	?base:String,
+	?baseOptions:VisualizerRawPropBaseOptionsData,
+
 	?id:String,
 
 	?tags:Array<String>,
