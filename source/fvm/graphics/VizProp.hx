@@ -1,5 +1,6 @@
 package fvm.graphics;
 
+import flixel.util.FlxColor;
 import flixel.util.typeLimit.OneOfThree;
 import flixel.util.typeLimit.OneOfTwo;
 import fvm.data.visualizer.VisualizerPropData;
@@ -154,6 +155,12 @@ class VizProp extends VizSprite
 		flipY = data?.data?.flipY ?? false;
 
 		if (data.data?.layer != null) zIndex = data?.data?.layer;
+
+		if (data.data?.color != null)
+		{
+			if (Std.isOfType(color, FlxColor)) this.color = cast(color, FlxColor);
+			if (Std.isOfType(color, String)) this.color = FlxColor.fromString(cast(color, String));
+		}
 
 		antialiasing = data?.data?.antialiasing ?? true;
 		// trace(zIndex);
