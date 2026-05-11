@@ -10,7 +10,8 @@ typedef VisualizerRawWaveformData =
 
 	?visibleDurationSeconds:Float,
 
-	?bgColor:String,
+	// ?bgColor:String,
+    ?rmsColor:String,
 
 	?barSize:Int,
 	?barSizePadding:Int,
