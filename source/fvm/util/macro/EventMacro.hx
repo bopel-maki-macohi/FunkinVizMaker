@@ -1,6 +1,5 @@
 package fvm.util.macro;
 
-#if macro
 import haxe.macro.Context;
 import haxe.macro.Expr;
 
@@ -10,7 +9,7 @@ import haxe.macro.Expr;
  */
 class EventMacro
 {
-	public static function build():Array<Field>
+	public static macro function build():Array<Field>
 	{
 		var fields = Context.getBuildFields();
 
@@ -104,4 +103,3 @@ typedef EventVar =
 	var type:ComplexType;
 	var expr:Expr;
 }
-#end
