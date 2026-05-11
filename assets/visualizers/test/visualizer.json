@@ -58,14 +58,11 @@
             "layer": 100,
             "type": "bopperSparrow",
             "asset": "bf-pixel",
-            
             "color": "#FF0000",
-
             "scrollFactor": [
                 0,
                 0
             ],
-
             "position": [
                 100,
                 100
@@ -115,54 +112,11 @@
                 1,
                 1
             ],
-            "width": 1280,
+            "width": 2560,
             "waveform": {
                 "audioFile": "Inst"
             }
         }
     ],
-    "events": [
-        {
-            "time": 0.0,
-            "event": {
-                "id": "cameraFocus",
-                "value": "bf-pixel"
-            }
-        },
-        {
-            "time": 1000.0,
-            "event": {
-                "id": "cameraFocus",
-                "value": "bf"
-            }
-        },
-        {
-            "time": 2000.0,
-            "event": {
-                "id": "cameraFocus",
-                "value": "bf-pixel"
-            }
-        },
-        {
-            "time": 3000.0,
-            "event": {
-                "id": "cameraFocus",
-                "value": "bf"
-            }
-        },
-        {
-            "time": 4000.0,
-            "event": {
-                "id": "cameraFocus",
-                "value": "bf-pixel"
-            }
-        },
-        {
-            "time": 5000.0,
-            "event": {
-                "id": "cameraFocus",
-                "value": "0"
-            }
-        }
-    ]
+    "events": []
 }
