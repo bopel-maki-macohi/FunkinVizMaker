@@ -95,6 +95,11 @@
                     "altAsset": "bf-hey"
                 }
             ]
+        },
+        {
+            "id": "waveform",
+            "type": "waveform",
+            "waveform": {}
         }
     ],
     "events": [
