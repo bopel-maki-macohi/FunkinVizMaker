@@ -17,7 +17,7 @@
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" />
 	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
 
-	<window width="640" height="360" if="HALF_SIZE"/>
+	<window width="640" height="360" if="HALF_SIZE" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
@@ -31,6 +31,7 @@
 
 	<haxelib name="flixel" />
 	<haxelib name="flixel-animate" />
+	<haxelib name="flixel-waveform" />
 
 	<haxelib name="hscript-improved" />
 
