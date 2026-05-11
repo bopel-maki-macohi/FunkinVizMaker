@@ -113,12 +113,12 @@
                 1
             ],
             "scale": [
-                1.5,
+                1,
                 1.5
             ],
             "waveform": {
-                "audioFile": "Inst",
-                "visibleDurationSeconds": 1,
+                "audioFile": "Voices-bf-pixel",
+                "visibleDurationSeconds": 0.1,
                 "barSize": 4,
                 "barPadding": 0
             }

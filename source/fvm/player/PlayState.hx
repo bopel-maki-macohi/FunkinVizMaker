@@ -123,8 +123,8 @@ class PlayState extends ConductorState
 		for (sprite in props.getWaveformProps())
 		{
 			var waveform = cast(sprite, VizWaveformSprite);
-
-			if (waveform != null) waveform.waveformTime = conductor.songPosition;
+			@:privateAccess
+			if (waveform != null) waveform.waveformTime = audioFiles?.getSoundBasedOnID(waveform.soundID)?._channel?.position ?? conductor.songPosition;
 		}
 	}
 

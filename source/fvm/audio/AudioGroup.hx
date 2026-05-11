@@ -32,6 +32,13 @@ class AudioGroup extends FlxSoundGroup
 		return soundKeys[index] ?? 'Sound #$index';
 	}
 
+	public function getSoundBasedOnID(id:String):FlxSound
+	{
+		if (!soundKeys.contains(id)) return null;
+
+		return sounds[soundKeys.indexOf(id)];
+	}
+
 	/**
 	 * Load an audio file
 	 * 
