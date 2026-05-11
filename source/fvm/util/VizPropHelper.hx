@@ -10,21 +10,11 @@ class VizPropHelper
 {
 	public static function parseGeneralData(sprite:FlxSprite, data:VisualizerRawPropData)
 	{
-		if (data == null) return;
+		if (data == null || sprite == null) return;
 
-		if (data.tags != null)
-		{
-			for (tag in data.tags)
-			{
-				switch (tag.toLowerCase())
-				{
-					// case 'center', 'screencenter':
-					// screenCenter();
-				}
-
+		if (data.tags != null) //
+			for (tag in data.tags) //
 				ScriptUtil.callCoreEvent('parsePropTag', EventManager.get(VisualizerPropParseTagEvent).recycle(sprite, tag));
-			}
-		}
 
 		sprite.alpha = data?.alpha ?? 1;
 
@@ -51,14 +41,9 @@ class VizPropHelper
 
 		if (data?.layer != null) sprite.zIndex = data?.layer;
 
-		if (data?.color != null)
-		{
-			// if (Std.isOfType(color, Int)) this.color = cast(data.color, Int);
-			if (Std.isOfType(sprite.color, String)) sprite.color = FlxColor.fromString(cast(data.color, String));
-		}
+		if (data?.color != null) sprite.color = FlxColor.fromString(data.color);
 
 		if (data.antialiasing != null) sprite.antialiasing = data.antialiasing;
-		// trace(zIndex);
 
 		if (data?.width != null) sprite.setGraphicSize(data.width, sprite.height);
 		if (data?.height != null) sprite.setGraphicSize(sprite.width, data.height);

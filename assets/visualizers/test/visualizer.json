@@ -58,7 +58,14 @@
             "layer": 100,
             "type": "bopperSparrow",
             "asset": "bf-pixel",
-            "color": "0xff0000",
+            
+            "color": "#FF0000",
+
+            "scrollFactor": [
+                0,
+                0
+            ],
+
             "position": [
                 100,
                 100
@@ -103,6 +110,10 @@
             "layer": 30,
             "tags": [
                 "center"
+            ],
+            "scrollFactor": [
+                0,
+                0
             ],
             "width": 1280,
             "waveform": {
