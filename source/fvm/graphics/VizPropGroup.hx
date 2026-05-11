@@ -35,32 +35,28 @@ class VizPropGroup extends FlxSpriteGroup
 
 	public function loadProp(prop:VisualizerRawPropData, propNum:Int, ?songID:String)
 	{
-		if (prop.type.vizSpriteProp())
-		{
-			var sprite:VizSpriteProp = new VizSpriteProp(prop, propNum, songID);
+		var sprite:VizSpriteProp = new VizSpriteProp(prop, propNum, songID);
 
-			if (sprite.loaded)
-			{
-				trace('Adding sprite prop: "${sprite.id}"');
-				add(sprite);
-			}
-			else sprite.destroy();
-		}
-		else if (prop.type == waveform)
+		if (sprite.loaded)
 		{
-			var waveform:VizWaveformSprite = new VizWaveformSprite(prop, propNum, songID);
+			trace('Adding sprite prop: "${sprite.id}"');
+			add(sprite);
+			return;
+		}
+		else sprite.destroy();
 
-			if (waveform.loaded)
-			{
-				trace('Adding waveform prop: "${waveform.id}"');
-				add(waveform);
-			}
-			else waveform.destroy();
-		}
-		else
+		var waveform:VizWaveformSprite = new VizWaveformSprite(prop, propNum, songID);
+
+		if (waveform.loaded)
 		{
-			trace('I dont know what class to use for ${prop.type} prop');
+			trace('Adding waveform prop: "${waveform.id}"');
+			add(waveform);
+
+			return;
 		}
+		else waveform.destroy();
+
+		trace('I dont know what class to use for ${prop.type} prop');
 	}
 
 	public function onBeatHit(curBeat:Int)
