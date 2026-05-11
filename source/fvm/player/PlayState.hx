@@ -1,5 +1,6 @@
 package fvm.player;
 
+import flixel.math.FlxMath;
 import fvm.graphics.VizWaveformSprite;
 import fvm.menus.VisualizerSelectMenu;
 import fvm.util.ScriptUtil;
@@ -123,7 +124,7 @@ class PlayState extends ConductorState
 		{
 			var waveform = cast(sprite, VizWaveformSprite);
 
-			waveform.waveformTime = audioFiles.sounds[0].time;
+			waveform.waveformTime = FlxMath.lerp(waveform.waveformTime, conductor.songPosition, .04);
 		}
 	}
 

@@ -7,4 +7,6 @@ typedef VisualizerRawWaveformData =
      * when multiple audio files
      */
     ?audioFile:String,
+
+    ?visibleDurationSeconds:Float,
 }

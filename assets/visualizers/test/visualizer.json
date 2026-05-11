@@ -114,7 +114,8 @@
             ],
             "width": 2560,
             "waveform": {
-                "audioFile": "Inst"
+                "audioFile": "Inst",
+                "visibleDurationSeconds": 10
             }
         }
     ],

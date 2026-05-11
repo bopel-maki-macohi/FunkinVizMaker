@@ -52,17 +52,19 @@ class VizWaveformSprite extends FlxWaveform implements IVizProp
 
 			if (PlayState.instance?.visualizer?.data?.audioFiles != null)
 			{
-				if (waveformData.audioFile != null) soundID = 'song/${waveformData.audioFile}';
+				if (waveformData.audioFile != null) soundID = 'song/${waveformData?.audioFile}';
 			}
 			else
 			{
 				soundID = PlayState.instance.audioFiles.soundKeys[0];
 				soundID = soundID.split('/')[soundID.split('/').length - 1];
-				
+
 				loadDataFromFlxSound(PlayState.instance?.audioFiles?.sounds[0]);
 			}
 
 			if (soundID != null) loadDataFromFlxSound(new FlxSound().loadEmbedded(songID.getSongVizualizerPath('$soundID'.audioFile())));
+
+			waveformDuration = (waveformData?.visibleDurationSeconds ?? 5) * 1000;
 
 			loaded = waveformBuffer != null;
 		}
