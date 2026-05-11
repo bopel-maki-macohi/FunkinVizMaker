@@ -89,13 +89,35 @@ class VizPropGroup extends FlxSpriteGroup
 		}
 	}
 
-	public function getPropsOfID(propID:String)
+	public function getIVisProps()
 	{
 		return members.filter(function(prop)
 		{
-			if (Std.isOfType(prop, IVizProp)) return cast(prop, IVizProp).id == propID;
+			return Std.isOfType(prop, IVizProp);
+		});
+	}
 
-			return false;
+	public function getWaveformProps()
+	{
+		return getIVisProps().filter(function(prop)
+		{
+			return Std.isOfType(prop, VizWaveformSprite);
+		});
+	}
+
+	public function getPropsOfID(propID:String)
+	{
+		return getIVisProps().filter(function(prop)
+		{
+			return cast(prop, IVizProp).id == propID;
+		});
+	}
+
+	public function getWaveformOfID(propID:String)
+	{
+		return getWaveformProps().filter(function(prop)
+		{
+			return cast(prop, VizWaveformSprite).id == propID;
 		});
 	}
 
@@ -109,5 +131,15 @@ class VizPropGroup extends FlxSpriteGroup
 		if (!propExists(propID)) return null;
 
 		return getPropsOfID(propID)[0];
+	}
+
+	public function getWaveformProp(propID:String)
+	{
+		if (!propExists(propID)) return null;
+
+		var prop:VizWaveformSprite = cast(getWaveformOfID(propID)[0], VizWaveformSprite);
+		if (prop != null) return prop;
+
+		return null;
 	}
 }
