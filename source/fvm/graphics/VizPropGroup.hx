@@ -83,7 +83,7 @@ class VizPropGroup extends FlxSpriteGroup
 		}
 	}
 
-	public function getPropsOfID(propID:String)
+	public function getPropsOfID(propID:String):Array<IVizProp>
 	{
 		return members.filter(function(prop)
 		{
@@ -98,7 +98,7 @@ class VizPropGroup extends FlxSpriteGroup
 		return getPropsOfID(propID).length > 0;
 	}
 
-	public function getProp(propID:String)
+	public function getProp(propID:String):IVizProp
 	{
 		if (!propExists(propID)) return null;
 
