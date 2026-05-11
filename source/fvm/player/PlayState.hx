@@ -46,7 +46,7 @@ class PlayState extends ConductorState
 		instance = this;
 
 		camGame = new FlxCamera();
-		FlxG.cameras.add(camGame);
+		FlxG.cameras.add(camGame, false);
 
 		camFollow = new FlxObject();
 		add(camFollow);
@@ -68,6 +68,8 @@ class PlayState extends ConductorState
 		add(props);
 
 		props.loadProps(song, visualizer.data.props);
+
+		props.camera = camGame;
 
 		camGame.zoom = visualizer?.data?.stage?.zoom ?? 1.0;
 

@@ -112,8 +112,8 @@
                 "center"
             ],
             "scrollFactor": [
-                0,
-                0
+                1,
+                1
             ],
             "width": 1280,
             "waveform": {

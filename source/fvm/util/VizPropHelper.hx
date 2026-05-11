@@ -32,8 +32,10 @@ class VizPropHelper
 
 		if (data?.scrollFactor != null)
 		{
-			sprite.scrollFactor.x = data?.scrollFactor[0] ?? 1;
-			sprite.scrollFactor.y = data?.scrollFactor[1] ?? 1;
+			sprite.scrollFactor.set(data?.scrollFactor[0] ?? 1, data?.scrollFactor[1] ?? 1);
+
+			trace(data.id);
+			trace(sprite.scrollFactor);
 		}
 
 		sprite.flipX = data?.flipX ?? false;
