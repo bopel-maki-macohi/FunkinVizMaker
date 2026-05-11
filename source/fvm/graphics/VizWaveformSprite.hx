@@ -42,6 +42,8 @@ class VizWaveformSprite extends FlxWaveform implements IVizProp
 			return;
 		}
 
+		antialiasing = false;
+
 		if (data.data.waveform != null)
 		{
 			var waveformData = data.data.waveform;

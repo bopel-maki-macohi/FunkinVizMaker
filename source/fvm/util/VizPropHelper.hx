@@ -57,7 +57,7 @@ class VizPropHelper
 			if (Std.isOfType(sprite.color, String)) sprite.color = FlxColor.fromString(cast(data.color, String));
 		}
 
-		sprite.antialiasing = data?.antialiasing ?? true;
+		if (data.antialiasing != null) sprite.antialiasing = data.antialiasing;
 		// trace(zIndex);
 
 		if (data?.width != null) sprite.setGraphicSize(data.width, sprite.height);

@@ -104,10 +104,7 @@
             "tags": [
                 "center"
             ],
-            "scrollFactor": [
-                0,
-                0
-            ],
+            "width": 1280,
             "waveform": {
                 "audioFile": "Inst"
             }
