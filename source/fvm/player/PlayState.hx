@@ -30,6 +30,13 @@ class PlayState extends ConductorState
 
 	public static var instance:PlayState;
 
+	public function new(song:String = 'test')
+	{
+		super();
+
+		this.song = song;
+	}
+
 	override function create()
 	{
 		super.create();
