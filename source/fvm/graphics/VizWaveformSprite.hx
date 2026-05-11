@@ -66,6 +66,8 @@ class VizWaveformSprite extends FlxWaveform implements IVizProp
 
 			waveformDuration = (waveformData?.visibleDurationSeconds ?? 5) * 1000;
 
+			if (waveformData?.bgColor != null) waveformBgColor = FlxColor.fromString(waveformData.bgColor);
+
 			loaded = waveformBuffer != null;
 		}
 

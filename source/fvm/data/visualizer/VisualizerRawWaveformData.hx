@@ -9,4 +9,6 @@ typedef VisualizerRawWaveformData =
     ?audioFile:String,
 
     ?visibleDurationSeconds:Float,
+
+    ?bgColor:String,
 }
