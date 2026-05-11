@@ -1,5 +1,6 @@
 package fvm.player;
 
+import fvm.graphics.VizWaveformSprite;
 import fvm.menus.VisualizerSelectMenu;
 import fvm.util.ScriptUtil;
 import fvm.scripting.events.visualizer.VisualizerEventCallEvent;
@@ -117,6 +118,13 @@ class PlayState extends ConductorState
 
 		conductor.songPosition += elapsed * 1000;
 		conductor.update();
+
+		for (sprite in props.getWaveformProps())
+		{
+			var waveform = cast(sprite, VizWaveformSprite);
+
+			waveform.waveformTime = audioFiles.sounds[0].time;
+		}
 	}
 
 	override public function beatHit(beat:Int)
