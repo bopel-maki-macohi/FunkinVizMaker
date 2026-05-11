@@ -45,9 +45,7 @@ class CancellableEvent implements IFlxDestroyable
 	 */
 	public function toString():String
 	{
-		var fields = Reflect.fields(this);
-		var claName = Type.getClassName(Type.getClass(this)).split(".");
-		var rep = '[${claName[claName.length - 1]}${cancelled ? " (Cancelled)" : ""}]';
+		var rep = '[${this.getClassName()}}${cancelled ? " (Cancelled)" : ""}]';
 		return rep;
 	}
 }

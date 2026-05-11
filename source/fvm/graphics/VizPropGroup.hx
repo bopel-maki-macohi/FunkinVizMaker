@@ -41,15 +41,25 @@ class VizPropGroup extends FlxSpriteGroup
 
 			if (sprite.loaded)
 			{
-				trace('Adding prop: "${sprite.id}"');
+				trace('Adding sprite prop: "${sprite.id}"');
 				add(sprite);
 			}
 			else sprite.destroy();
 		}
-		// else if (prop.type == waveform) {}
+		else if (prop.type == waveform)
+		{
+			var waveform:VizWaveformSprite = new VizWaveformSprite(prop, propNum, songID);
+
+			if (waveform.loaded)
+			{
+				trace('Adding waveform prop: "${waveform.id}"');
+				add(waveform);
+			}
+			else waveform.destroy();
+		}
 		else
 		{
-			trace('I dont know what class to use for ${prop.type}');
+			trace('I dont know what class to use for ${prop.type} prop');
 		}
 	}
 

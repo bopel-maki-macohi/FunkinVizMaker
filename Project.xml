@@ -60,6 +60,8 @@
 	<define name="CUSTOM_CLASSES" />
 	<define name="hscriptPos" />
 
+	<define name="NPAP" unless="NO_NPAP"/>
+
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
 	<haxedef name="FLX_NO_HEALTH" />

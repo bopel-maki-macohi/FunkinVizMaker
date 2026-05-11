@@ -1,5 +1,7 @@
 package fvm.graphics;
 
+import fvm.util.ClassUtil;
+import fvm.util.VizPropHelper;
 import flixel.util.FlxColor;
 import flixel.util.typeLimit.OneOfThree;
 import flixel.util.typeLimit.OneOfTwo;
@@ -21,14 +23,12 @@ import fvm.data.visualizer.VisualizerRawPropData;
 class VizSpriteProp extends VizSprite implements IVizProp
 {
 	public var data:VisualizerPropData;
+	public var bopType:VisualizerPropBopType;
 
 	public var songID:String;
-
 	public var id:String;
 
 	public var loaded:Bool = false;
-
-	public var bopType:VisualizerPropBopType;
 
 	override public function new(data:Dynamic, propNum:Int, ?songID:String)
 	{
@@ -61,7 +61,7 @@ class VizSpriteProp extends VizSprite implements IVizProp
 		switch (data.data.type)
 		{
 			default:
-				trace('VizSpriteProp : Unsupported data type: ${data.data.type}');
+				trace('${ClassUtil.getClassName(this)} : Unsupported data type: ${data.data.type}');
 
 			case still:
 				if (assetPath == null) return;
@@ -113,60 +113,7 @@ class VizSpriteProp extends VizSprite implements IVizProp
 				loaded = true;
 		}
 
-		if (loaded) parseGeneralData();
-	}
-
-	public function parseGeneralData()
-	{
-		if (data.data == null) return;
-
-		if (data.data.tags != null)
-		{
-			for (tag in data.data.tags)
-			{
-				switch (tag.toLowerCase())
-				{
-					// case 'center', 'screencenter':
-					// screenCenter();
-				}
-
-				ScriptUtil.callCoreEvent('parsePropTag', EventManager.get(VisualizerPropParseTagEvent).recycle(this, tag));
-			}
-		}
-
-		alpha = data?.data?.alpha ?? 1;
-
-		if (data.data?.position != null)
-		{
-			x += data?.data?.position[0] ?? 0;
-			y += data?.data?.position[1] ?? 0;
-		}
-
-		if (data.data?.scale != null)
-		{
-			scale.x = data?.data?.scale[0] ?? 1;
-			scale.y = data?.data?.scale[1] ?? 1;
-		}
-
-		if (data.data?.scrollFactor != null)
-		{
-			scrollFactor.x = data?.data?.scrollFactor[0] ?? 1;
-			scrollFactor.y = data?.data?.scrollFactor[1] ?? 1;
-		}
-
-		flipX = data?.data?.flipX ?? false;
-		flipY = data?.data?.flipY ?? false;
-
-		if (data.data?.layer != null) zIndex = data?.data?.layer;
-
-		if (data.data?.color != null)
-		{
-			// if (Std.isOfType(color, Int)) this.color = cast(data.data.color, Int);
-			if (Std.isOfType(color, String)) this.color = FlxColor.fromString(cast(data.data.color, String));
-		}
-
-		antialiasing = data?.data?.antialiasing ?? true;
-		// trace(zIndex);
+		if (loaded) VizPropHelper.parseGeneralData(this, data.data);
 	}
 
 	/**

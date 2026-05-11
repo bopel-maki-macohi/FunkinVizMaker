@@ -1,10 +1,10 @@
 package fvm.scripting.events.visualizer;
 
-import fvm.graphics.VizSpriteProp;
+import flixel.FlxSprite;
 
 class VisualizerPropParseTagEvent extends CancellableEvent
 {
-	public var prop:VizSpriteProp;
+	public var prop:FlxSprite;
 
 	public var tag:String;
 }

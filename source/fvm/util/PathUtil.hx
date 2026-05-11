@@ -49,7 +49,9 @@ class PathUtil
 			#end
 
 			if (FileSystem.exists(path) && assetPath == null) assetPath = path;
+			#if NPAP
 			else if (assetPath == null) trace(log);
+			#end
 		}
 
 		checkForPath(localPath, 'local');

@@ -100,7 +100,17 @@
         {
             "id": "waveform",
             "type": "waveform",
-            "waveform": {}
+            "layer": 30,
+            "tags": [
+                "center"
+            ],
+            "scrollFactor": [
+                0,
+                0
+            ],
+            "waveform": {
+                "audioFile": "Inst"
+            }
         }
     ],
     "events": [

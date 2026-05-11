@@ -38,7 +38,7 @@ class VisualizerPropData extends DataClass<VisualizerRawPropData>
 	override function init(data:Dynamic)
 	{
 		loop++;
-		trace('loop $loop');
+		// trace('loop $loop');
 
 		super.init(data);
 	}

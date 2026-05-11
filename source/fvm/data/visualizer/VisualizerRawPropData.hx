@@ -1,8 +1,5 @@
 package fvm.data.visualizer;
 
-import flixel.util.FlxColor;
-import flixel.util.typeLimit.OneOfTwo;
-
 typedef VisualizerRawPropData =
 {
 	type:VisualizerPropType,
@@ -27,6 +24,9 @@ typedef VisualizerRawPropData =
 	?antialiasing:Bool,
 
 	?color:String,
+
+	?width:Int,
+	?height:Int,
 
 	?bopAnim:String,
 	?anims:Array<VisualizerRawAnimationData>,
