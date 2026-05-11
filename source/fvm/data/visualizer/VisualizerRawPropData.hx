@@ -5,6 +5,9 @@ typedef VisualizerRawPropData =
 	type:VisualizerPropType,
 	asset:String,
 
+	?base:String,
+	?id:String,
+
 	?tags:Array<String>,
 
 	?layer:Int,
@@ -17,8 +20,6 @@ typedef VisualizerRawPropData =
 	?flipX:Bool,
 	?flipY:Bool,
 	?antialiasing:Bool,
-
-	?id:String,
 
 	?bopAnim:String,
 	?anims:Array<VisualizerRawAnimationData>,

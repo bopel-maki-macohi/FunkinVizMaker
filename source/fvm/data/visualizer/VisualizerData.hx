@@ -3,11 +3,14 @@ package fvm.data.visualizer;
 import haxe.Json;
 import lime.utils.Assets;
 
+// @:build(fvm.util.macro.DataClassMacro.build())
 class VisualizerData extends DataClass<VisualizerRawData>
 {
-	public function new(songID:String)
+	override function loadFromFile(file:String)
 	{
-		var path:String = songID.getSongVizualizerPath('visualizer'.jsonFile());
+		super.loadFromFile(file);
+
+		var path:String = file.getSongVizualizerPath('visualizer'.jsonFile());
 
 		if (!Assets.exists(path)) throw 'Missing Visualizer Path: $path';
 
@@ -27,38 +30,8 @@ class VisualizerData extends DataClass<VisualizerRawData>
 
 		data = json;
 
-		// upgrading shit here
+		super.loadFromFile(file);
 
-		trace('Loaded $songID Visualizer data');
+		trace('Loaded "$file" Visualizer data');
 	}
-
-	public var audioFiles(get, set):Array<String>;
-
-	function get_audioFiles():Array<String> return data.audioFiles;
-
-	function set_audioFiles(audioFiles:Array<String>):Array<String> return data.audioFiles = audioFiles;
-
-	public var bpm(get, set):Float;
-
-	function get_bpm():Float return data.bpm;
-
-	function set_bpm(bpm:Float):Float return data.bpm = bpm;
-
-	public var stage(get, set):VisualizerRawStageData;
-
-	function get_stage():VisualizerRawStageData return data.stage;
-
-	function set_stage(stage:VisualizerRawStageData):VisualizerRawStageData return data.stage = stage;
-
-	public var props(get, set):Array<VisualizerRawPropData>;
-
-	function get_props():Array<VisualizerRawPropData> return data.props;
-
-	function set_props(props:Array<VisualizerRawPropData>):Array<VisualizerRawPropData> return data.props = props;
-
-	public var events(get, set):Array<VisualizerRawEventData>;
-
-	function get_events():Array<VisualizerRawEventData> return data.events;
-
-	function set_events(events:Array<VisualizerRawEventData>):Array<VisualizerRawEventData> return data.events = events;
 }

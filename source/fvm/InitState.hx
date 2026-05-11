@@ -1,5 +1,6 @@
 package fvm;
 
+import fvm.data.visualizer.VisualizerData;
 import fvm.util.debug.CrashHandler;
 import flixel.util.FlxTimer;
 import fvm.scripting.Script;
@@ -75,6 +76,12 @@ class InitState extends FlxState
 			Sys.exit(0);
 		}
 		else if (DefineMacro.isDefined('DONT_PLAY')) Sys.exit(0);
+		else if (DefineMacro.isDefined('DATACLASSMACROTESTING'))
+		{
+			var vd = new VisualizerData('test');
+
+			Sys.exit(0);
+		}
 		else FlxG.switchState(() -> new PlayState());
 	}
 }

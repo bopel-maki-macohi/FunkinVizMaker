@@ -49,20 +49,20 @@ class PlayState extends ConductorState
 
 		audioFiles = new AudioGroup();
 		audioFiles.loadFiles([
-			for (file in visualizer.audioFiles) song.getSongVizualizerPath('song/$file'.audioFile())
+			for (file in visualizer.data?.audioFiles) song.getSongVizualizerPath('song/$file'.audioFile())
 		]);
 		audioFiles.play();
 
-		conductor.setBPM(visualizer.bpm);
+		conductor.setBPM(visualizer.data.bpm);
 
 		props = new VizPropGroup();
 		add(props);
 
-		props.loadProps(song, visualizer.props);
+		props.loadProps(song, visualizer.data.props);
 
-		camGame.zoom = visualizer?.stage?.zoom ?? 1.0;
+		camGame.zoom = visualizer?.data?.stage?.zoom ?? 1.0;
 
-		for (event in visualizer.events)
+		for (event in visualizer.data.events)
 		{
 			var timer = new FlxTimer();
 			timer.start(event.time / 1000, t ->
@@ -75,7 +75,7 @@ class PlayState extends ConductorState
 			eventTimers.push(timer);
 		}
 
-		camGame.follow(camFollow, LOCKON, visualizer?.stage?.camSpeed ?? 0.04);
+		camGame.follow(camFollow, LOCKON, visualizer?.data?.stage?.camSpeed ?? 0.04);
 		camGame.focusOn(camFollow.getPosition());
 
 		refresh();

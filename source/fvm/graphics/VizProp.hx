@@ -1,5 +1,9 @@
 package fvm.graphics;
 
+import flixel.util.typeLimit.OneOfThree;
+import flixel.util.typeLimit.OneOfTwo;
+import fvm.data.visualizer.VisualizerPropData;
+import sys.FileSystem;
 import fvm.scripting.events.visualizer.VisualizerPropEvent;
 import fvm.util.ScriptUtil;
 import fvm.util.Core;
@@ -15,17 +19,18 @@ import fvm.data.visualizer.VisualizerRawPropData;
 
 class VizProp extends VizSprite
 {
-	public var data:VisualizerRawPropData;
+	public var data:VisualizerPropData;
 
 	public var songID:String;
 
 	public var id:String;
 
-	override public function new(data:VisualizerRawPropData, propNum:Int, ?songID:String)
+	override public function new(data:Dynamic, propNum:Int, ?songID:String)
 	{
 		super();
 
-		this.data = data;
+		this.data = new VisualizerPropData(data);
+
 		this.songID = songID;
 
 		this.id = '$propNum';
@@ -42,17 +47,17 @@ class VizProp extends VizSprite
 	public function parseData()
 	{
 		if (loaded) return;
-		if (data == null) return;
+		if (data.data == null) return;
 
 		this.bopType = beat;
 
-		if (data.bopType != null) this.bopType = data.bopType;
+		if (data.data.bopType != null) this.bopType = data.data.bopType;
 
-		if (data.id != null) this.id = data.id;
+		if (data.data.id != null) this.id = data.data.id;
 
-		var assetPath:String = data.asset.imageFile().getPropAsset(id, songID);
+		var assetPath:String = data.data.asset.imageFile().getPropAsset(id, songID);
 
-		switch (data.type)
+		switch (data.data.type)
 		{
 			case still:
 				if (assetPath == null) return;
@@ -64,11 +69,11 @@ class VizProp extends VizSprite
 
 			case bopperSparrow:
 				if (assetPath == null) return;
-				if (data.anims == null) return;
+				if (data.data.anims == null) return;
 
 				var frameList:Array<FlxAtlasFrames> = [Path.withoutExtension(assetPath).getSparrowAtlas()];
 
-				for (anim in data.anims)
+				for (anim in data.data.anims)
 				{
 					if (anim.altAsset != null)
 					{
@@ -83,7 +88,7 @@ class VizProp extends VizSprite
 
 				frames = FlxAnimateFrames.combineAtlas(frameList);
 
-				for (anim in data.anims)
+				for (anim in data.data.anims)
 				{
 					if (anim.name == null) continue;
 					if (anim.prefix == null) continue;
@@ -96,9 +101,9 @@ class VizProp extends VizSprite
 
 				this.animated = true;
 
-				if (data.bopAnim == null) data.bopAnim = animation.getNameList()[0];
+				if (data.data.bopAnim == null) data.data.bopAnim = animation.getNameList()[0];
 
-				bopAnim = data.bopAnim;
+				bopAnim = data.data.bopAnim;
 				dance();
 
 				loaded = true;
@@ -109,11 +114,11 @@ class VizProp extends VizSprite
 
 	public function parseGeneralData()
 	{
-		if (data == null) return;
+		if (data.data == null) return;
 
-		if (data.tags != null)
+		if (data.data.tags != null)
 		{
-			for (tag in data.tags)
+			for (tag in data.data.tags)
 			{
 				switch (tag.toLowerCase())
 				{
@@ -125,32 +130,32 @@ class VizProp extends VizSprite
 			}
 		}
 
-		alpha = data?.alpha ?? 1;
+		alpha = data?.data?.alpha ?? 1;
 
-		if (data.position != null)
+		if (data.data?.position != null)
 		{
-			x += data?.position[0] ?? 0;
-			y += data?.position[1] ?? 0;
+			x += data?.data?.position[0] ?? 0;
+			y += data?.data?.position[1] ?? 0;
 		}
 
-		if (data.scale != null)
+		if (data.data?.scale != null)
 		{
-			scale.x = data?.scale[0] ?? 1;
-			scale.y = data?.scale[1] ?? 1;
+			scale.x = data?.data?.scale[0] ?? 1;
+			scale.y = data?.data?.scale[1] ?? 1;
 		}
 
-		if (data.scrollFactor != null)
+		if (data.data?.scrollFactor != null)
 		{
-			scrollFactor.x = data?.scrollFactor[0] ?? 1;
-			scrollFactor.y = data?.scrollFactor[1] ?? 1;
+			scrollFactor.x = data?.data?.scrollFactor[0] ?? 1;
+			scrollFactor.y = data?.data?.scrollFactor[1] ?? 1;
 		}
 
-		flipX = data?.flipX ?? false;
-		flipY = data?.flipY ?? false;
+		flipX = data?.data?.flipX ?? false;
+		flipY = data?.data?.flipY ?? false;
 
-		if (data.layer != null) zIndex = data.layer;
+		if (data.data?.layer != null) zIndex = data?.data?.layer;
 
-		antialiasing = data?.antialiasing ?? true;
+		antialiasing = data?.data?.antialiasing ?? true;
 		// trace(zIndex);
 	}
 
@@ -163,6 +168,7 @@ class VizProp extends VizSprite
 	public function dance()
 	{
 		if (!animated) return;
+		if (bopType == none) return;
 
 		animation.play(bopAnim);
 		ScriptUtil.callCoreEvent('dance', EventManager.get(VisualizerPropEvent).recycle(this));

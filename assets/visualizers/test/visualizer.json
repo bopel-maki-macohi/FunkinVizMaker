@@ -76,19 +76,10 @@
             "antialiasing": false
         },
         {
-            "id": "bf",
-            "layer": 200,
-            "type": "bopperSparrow",
-            "asset": "bf",
+            "base": "bf",
             "position": [
                 770,
                 450
-            ],
-            "anims": [
-                {
-                    "name": "idle",
-                    "prefix": "BF idle dance instance 1"
-                }
             ]
         }
     ],

@@ -1,0 +1,12 @@
+{
+    "id": "bf",
+    "layer": 200,
+    "type": "bopperSparrow",
+    "asset": "bf",
+    "anims": [
+        {
+            "name": "idle",
+            "prefix": "BF idle dance instance 1"
+        }
+    ]
+}
