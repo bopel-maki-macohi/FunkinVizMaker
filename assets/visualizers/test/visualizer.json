@@ -58,6 +58,7 @@
             "layer": 100,
             "type": "bopperSparrow",
             "asset": "bf-pixel",
+            "color": "0xff0000",
             "position": [
                 100,
                 100

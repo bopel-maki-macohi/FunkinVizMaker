@@ -1,8 +1,8 @@
 package fvm.scripting.events.visualizer;
 
-import fvm.graphics.VizProp;
+import fvm.graphics.VizSpriteProp;
 
 class VisualizerPropEvent extends CancellableEvent
 {
-	public var props:VizProp;
+	public var props:VizSpriteProp;
 }

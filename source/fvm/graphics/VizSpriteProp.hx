@@ -18,13 +18,17 @@ import fvm.data.visualizer.VisualizerPropBopType;
 import haxe.io.Path;
 import fvm.data.visualizer.VisualizerRawPropData;
 
-class VizProp extends VizSprite
+class VizSpriteProp extends VizSprite implements IVizProp
 {
 	public var data:VisualizerPropData;
 
 	public var songID:String;
 
 	public var id:String;
+
+	public var loaded:Bool = false;
+
+	public var bopType:VisualizerPropBopType;
 
 	override public function new(data:Dynamic, propNum:Int, ?songID:String)
 	{
@@ -38,10 +42,6 @@ class VizProp extends VizSprite
 
 		parseData();
 	}
-
-	public var loaded:Bool = false;
-
-	public var bopType:VisualizerPropBopType;
 
 	public var bopAnim:String;
 
@@ -60,6 +60,9 @@ class VizProp extends VizSprite
 
 		switch (data.data.type)
 		{
+			default:
+				trace('VizSpriteProp : Unsupported data type: ${data.data.type}');
+
 			case still:
 				if (assetPath == null) return;
 
@@ -158,8 +161,8 @@ class VizProp extends VizSprite
 
 		if (data.data?.color != null)
 		{
-			if (Std.isOfType(color, FlxColor)) this.color = cast(color, FlxColor);
-			if (Std.isOfType(color, String)) this.color = FlxColor.fromString(cast(color, String));
+			// if (Std.isOfType(color, Int)) this.color = cast(data.data.color, Int);
+			if (Std.isOfType(color, String)) this.color = FlxColor.fromString(cast(data.data.color, String));
 		}
 
 		antialiasing = data?.data?.antialiasing ?? true;
